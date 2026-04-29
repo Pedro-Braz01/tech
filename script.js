@@ -77,6 +77,8 @@
     if (!wrap) return;
 
     const temPrecoAnterior = p.preco_de && p.preco_de.trim() !== '';
+    const temBlog = p.link_blog && p.link_blog.trim() !== '' && !p.link_blog.startsWith('LINK_');
+    const textoBlog = p.texto_blog || 'Saiba mais e veja as avaliações';
 
     wrap.innerHTML = `
       <article class="produto-destaque" id="produto-destaque">
@@ -108,6 +110,19 @@
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
             Ver Oferta no Mercado Livre
           </a>
+          ${temBlog ? `
+          <a
+            href="${p.link_blog}"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn-saiba-mais"
+            data-track="blog_destaque"
+            data-produto="${p.titulo}"
+            aria-label="${textoBlog} — ${p.titulo}"
+          >
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            ${textoBlog}
+          </a>` : ''}
           <div class="confianca">
             <div class="confianca-item">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
@@ -126,10 +141,17 @@
       </article>
     `;
 
-    // Event listener de tracking
-    wrap.querySelector('.btn-cta').addEventListener('click', (e) => {
+    // Event listeners de tracking
+    wrap.querySelector('.btn-cta').addEventListener('click', () => {
       trackEvento('produto_click', p.titulo, p.link);
     });
+
+    const btnBlog = wrap.querySelector('.btn-saiba-mais');
+    if (btnBlog) {
+      btnBlog.addEventListener('click', () => {
+        trackEvento('blog_click', p.titulo, p.link_blog);
+      });
+    }
   }
 
   function renderizarSecundarios(produtos) {
@@ -141,6 +163,8 @@
     produtos.forEach(p => {
       const temPrecoAnterior = p.preco_de && p.preco_de.trim() !== '';
       const badgeClass = p.badge && p.badge.includes('Preço') ? 'badge-preco' : 'badge-premium';
+      const temBlog = p.link_blog && p.link_blog.trim() !== '' && !p.link_blog.startsWith('LINK_');
+      const textoBlog = p.texto_blog || 'Saiba mais e veja as avaliações';
 
       const card = document.createElement('article');
       card.className = 'card-produto';
@@ -173,12 +197,32 @@
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
             Ver Oferta
           </a>
+          ${temBlog ? `
+          <a
+            href="${p.link_blog}"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn-card-saiba"
+            data-track="blog_secundario"
+            data-produto="${p.titulo}"
+            aria-label="${textoBlog} — ${p.titulo}"
+          >
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            ${textoBlog}
+          </a>` : ''}
         </div>
       `;
 
       card.querySelector('.btn-card').addEventListener('click', () => {
         trackEvento('produto_click', p.titulo, p.link);
       });
+
+      const btnBlog = card.querySelector('.btn-card-saiba');
+      if (btnBlog) {
+        btnBlog.addEventListener('click', () => {
+          trackEvento('blog_click', p.titulo, p.link_blog);
+        });
+      }
 
       grid.appendChild(card);
     });
@@ -207,7 +251,6 @@
 
   function filtrar(q, produtos, destaqueWrap, outrosWrap, semResultados) {
     if (!q) {
-      // Mostrar tudo
       destaqueWrap.classList.remove('hidden');
       outrosWrap.classList.remove('hidden');
       document.querySelectorAll('.card-produto').forEach(c => c.classList.remove('hidden'));
@@ -215,12 +258,10 @@
       return;
     }
 
-    // Produto destaque
     const destaque = produtos.find(p => p.destaque) || produtos[0];
     const matchDestaque = destaque.titulo.toLowerCase().includes(q) || destaque.descricao.toLowerCase().includes(q);
     destaqueWrap.classList.toggle('hidden', !matchDestaque);
 
-    // Cards secundários
     let algumVisivel = matchDestaque;
     document.querySelectorAll('.card-produto').forEach(card => {
       const t = card.dataset.titulo || '';
@@ -241,13 +282,11 @@
     const sticky = document.getElementById('sticky-cta');
     if (!sticky) return;
 
-    // Mostrar após rolar 300px
     const THRESHOLD = 300;
     let visible = false;
 
     const handler = () => {
-      if (window.innerWidth >= 640) return; // só mobile
-
+      if (window.innerWidth >= 640) return;
       const scrolled = window.scrollY > THRESHOLD;
       if (scrolled !== visible) {
         visible = scrolled;
@@ -257,7 +296,6 @@
 
     window.addEventListener('scroll', handler, { passive: true });
 
-    // Tracking no sticky
     const stickyBtn = document.getElementById('sticky-btn');
     if (stickyBtn) {
       stickyBtn.addEventListener('click', () => {
@@ -269,21 +307,10 @@
   /* =============================================
      4. TRACKING
      ============================================= */
-
-  /**
-   * trackEvento — dispara evento para GA4 / gtag
-   * ou registra no console para debug.
-   *
-   * Para usar com Google Analytics, adicione o
-   * snippet do GA no index.html e descomente o
-   * bloco gtag abaixo.
-   */
   function trackEvento(action, label, url) {
-    // Log para debug
     console.log(`[Track] ${action} | ${label}${url ? ' | ' + url : ''}`);
 
-    // Google Analytics 4 (GA4)
-    // Descomente após inserir snippet do GA:
+    // Google Analytics 4 (GA4) — descomente após inserir snippet:
     /*
     if (typeof gtag === 'function') {
       gtag('event', action, {
@@ -295,7 +322,6 @@
     */
   }
 
-  // Tracking no botão da lista ML
   document.addEventListener('DOMContentLoaded', () => {
     const btnLista = document.getElementById('btn-lista');
     if (btnLista) {

@@ -584,6 +584,66 @@ a {
 }
 
 /* ============================================
+   BOTÃO SAIBA MAIS (destaque + cards)
+   ============================================ */
+.btn-saiba-mais {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  width: 100%;
+  background: transparent;
+  color: var(--cor-texto-suave);
+  font-family: var(--font-titulo);
+  font-size: 13px;
+  font-weight: 600;
+  padding: 11px 16px;
+  border-radius: var(--radius-btn);
+  border: 1.5px solid var(--cor-borda);
+  cursor: pointer;
+  margin-top: 10px;
+  transition: border-color var(--transition), color var(--transition), background var(--transition);
+  text-align: center;
+}
+
+.btn-saiba-mais:hover {
+  border-color: var(--cor-texto-suave);
+  color: var(--cor-texto);
+  background: rgba(0,0,0,0.03);
+}
+
+.btn-saiba-mais svg {
+  flex-shrink: 0;
+  opacity: 0.6;
+}
+
+/* Versão menor para cards secundários */
+.btn-card-saiba {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  width: 100%;
+  background: transparent;
+  color: var(--cor-texto-suave);
+  font-family: var(--font-titulo);
+  font-size: 11px;
+  font-weight: 600;
+  padding: 8px 8px;
+  border-radius: var(--radius-btn);
+  border: 1.5px solid var(--cor-borda);
+  cursor: pointer;
+  margin-top: 6px;
+  transition: border-color var(--transition), color var(--transition);
+  text-align: center;
+}
+
+.btn-card-saiba:hover {
+  border-color: var(--cor-texto-suave);
+  color: var(--cor-texto);
+}
+
+/* ============================================
    RODAPÉ
    ============================================ */
 .rodape {
@@ -691,7 +751,7 @@ a {
   /* Layout desktop: destaque à esquerda, 2 cards à direita */
   .main-grid {
     display: grid;
-    grid-template-columns: 1fr 360px;
+    grid-template-columns: 1fr 500px;
     gap: 0 28px;
     align-items: stretch;
   }
@@ -759,11 +819,12 @@ a {
   }
 
   .card-produto .produto-img {
-    width: 130px;
-    min-width: 130px;
+    width: 170px;
+    min-width: 170px;
     aspect-ratio: unset;
     height: 100%;
     border-radius: 0;
+    flex-shrink: 0;
   }
 
   .card-produto:hover .produto-img {
@@ -771,15 +832,26 @@ a {
   }
 
   .card-body {
-    padding: 14px 16px;
+    padding: 16px 18px;
     justify-content: space-between;
+    gap: 6px;
   }
 
-  .card-titulo { font-size: 14px; }
+  .card-titulo { font-size: 15px; }
+
+  /* No desktop mostra descrição completa, sem cortar */
   .card-descricao {
-    -webkit-line-clamp: 2;
-    font-size: 12px;
+    -webkit-line-clamp: unset;
+    display: block;
+    overflow: visible;
+    font-size: 13px;
+    flex: 1;
   }
+
+  /* Preço e botões no desktop */
+  .card-preco { font-size: 20px; margin-bottom: 10px; }
+  .card-preco-de { margin-bottom: 2px; }
+  .btn-card-saiba { margin-top: 8px; }
 
   .cta-lista {
     margin-left: 0;

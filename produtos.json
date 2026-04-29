@@ -18,7 +18,9 @@
       "link": "https://meli.la/1soAQAh",
       "badge": "⭐ Mais Vendido",
       "destaque": true,
-      "microcopy": "Frete grátis para todo o Brasil com entrega expressa: compre hoje e receba amanhã!"
+      "microcopy": "Frete grátis para todo o Brasil com entrega expressa: compre hoje e receba amanhã!",
+      "link_blog": "LINK_DO_SEU_BLOG_PRODUTO_1",
+      "texto_blog": "Saiba mais e veja as avaliações"
     },
     {
       "id": 2,
@@ -30,7 +32,9 @@
       "link": "LINK_AFILIADO_2",
       "badge": "💰 Melhor Preço",
       "destaque": false,
-      "microcopy": "Entrega rápida"
+      "microcopy": "Entrega rápida",
+      "link_blog": "LINK_DO_SEU_BLOG_PRODUTO_2",
+      "texto_blog": "Saiba mais e veja as avaliações"
     },
     {
       "id": 3,
@@ -42,7 +46,9 @@
       "link": "LINK_AFILIADO_3",
       "badge": "🏆 Premium",
       "destaque": false,
-      "microcopy": "Parcelamento sem juros"
+      "microcopy": "Parcelamento sem juros",
+      "link_blog": "LINK_DO_SEU_BLOG_PRODUTO_3",
+      "texto_blog": "Saiba mais e veja as avaliações"
     }
   ],
   "link_lista_promocoes": "LINK_LISTA_MERCADO_LIVRE"
