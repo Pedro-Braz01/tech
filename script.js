@@ -84,11 +84,11 @@
       <article class="produto-destaque" id="produto-destaque">
         ${p.badge ? `<span class="badge-destaque">${p.badge}</span>` : ''}
         <img
-          src="${p.imagem || 'img/placeholder.jpg'}"
+          src="${p.imagem || ''}"
           alt="${p.titulo}"
           class="produto-img"
           loading="eager"
-          onerror="this.src='img/placeholder.jpg'"
+          onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22%3E%3Crect fill=%22%23f0f0f0%22 width=%22400%22 height=%22300%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 fill=%22%23bbb%22 font-size=%2214%22%3ESem imagem%3C/text%3E%3C/svg%3E'"
         />
         <div class="produto-destaque-body">
           <h2>${p.titulo}</h2>
@@ -174,11 +174,11 @@
       card.innerHTML = `
         ${p.badge ? `<span class="card-badge ${badgeClass}">${p.badge}</span>` : ''}
         <img
-          src="${p.imagem || 'img/placeholder.jpg'}"
+          src="${p.imagem || ''}"
           alt="${p.titulo}"
           class="produto-img"
           loading="lazy"
-          onerror="this.src='img/placeholder.jpg'"
+          onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22300%22%3E%3Crect fill=%22%23f0f0f0%22 width=%22300%22 height=%22300%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 fill=%22%23bbb%22 font-size=%2213%22%3ESem imagem%3C/text%3E%3C/svg%3E'"
         />
         <div class="card-body">
           <h3 class="card-titulo">${p.titulo}</h3>
