@@ -688,40 +688,81 @@ a {
     padding-right: 0;
   }
 
-  /* Layout desktop: destaque + secundários lado a lado */
+  /* Layout desktop: destaque à esquerda, 2 cards à direita */
   .main-grid {
     display: grid;
-    grid-template-columns: 1fr 380px;
-    gap: 28px;
-    align-items: start;
+    grid-template-columns: 1fr 360px;
+    gap: 0 28px;
+    align-items: stretch;
   }
 
-  /* Destaque ocupa coluna esquerda inteira */
+  /* Coluna esquerda: destaque ocupa toda a altura */
+  .main-grid > div:first-child {
+    display: flex;
+    flex-direction: column;
+  }
+
   .produto-destaque-wrap {
-    padding: 20px 0 8px;
-    grid-row: span 2;
+    padding: 20px 0 0;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
   }
 
-  /* Secundários em coluna à direita, empilhados */
+  .produto-destaque {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Imagem do destaque cresce para preencher — sem aspect-ratio fixo */
+  .produto-destaque .produto-img {
+    aspect-ratio: unset;
+    flex: 1;
+    min-height: 160px;
+    max-height: 340px;
+  }
+
+  /* Coluna direita: header + dois cards em flex column */
   #outros-wrap {
-    /* fica na coluna direita */
+    display: flex;
+    flex-direction: column;
+    /* mesmo padding-top visual do lado esquerdo */
+    padding-top: 20px;
   }
 
+  #outros-wrap .section-header {
+    padding-top: 0;
+    padding-bottom: 12px;
+    flex-shrink: 0;
+  }
+
+  .outros-produtos-wrap {
+    flex: 1;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Os dois cards dividem o espaço restante igualmente */
   .outros-grid {
-    grid-template-columns: 1fr;
+    display: flex;
+    flex-direction: column;
     gap: 16px;
+    flex: 1;
   }
 
-  /* Card secundário vira horizontal no desktop */
   .card-produto {
+    flex: 1;
     flex-direction: row;
-    max-height: 160px;
+    min-height: 0;
   }
 
   .card-produto .produto-img {
-    width: 140px;
-    min-width: 140px;
-    aspect-ratio: 1/1;
+    width: 130px;
+    min-width: 130px;
+    aspect-ratio: unset;
+    height: 100%;
     border-radius: 0;
   }
 
@@ -731,6 +772,7 @@ a {
 
   .card-body {
     padding: 14px 16px;
+    justify-content: space-between;
   }
 
   .card-titulo { font-size: 14px; }
@@ -742,11 +784,6 @@ a {
   .cta-lista {
     margin-left: 0;
     margin-right: 0;
-  }
-
-  /* Seção header do lado direito sem padding-top extra */
-  #outros-wrap .section-header {
-    padding-top: 20px;
   }
 }
 
