@@ -6,16 +6,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <!-- ===== SEO ===== -->
-  <title>Ofertas Imperdíveis | Melhores Produtos no Mercado Livre</title>
-  <meta name="description" content="Selecionamos as melhores ofertas do Mercado Livre com custo-benefício comprovado. Confira preços e compre com segurança." />
+  <title>Melhores Ofertas do Mercado Livre com Frete Grátis | Produtos Mais Vendidos</title>
+  <meta name="description" content="Encontre os produtos mais vendidos do Mercado Livre com desconto, frete grátis e entrega rápida. Comparamos preços e mostramos o melhor negócio para você economizar hoje." />
+  <meta name="keywords" content="melhores ofertas mercado livre, produtos em promoção, frete grátis mercado livre, mais vendidos mercado livre, desconto mercado livre" />
   <meta name="robots" content="index, follow" />
-  <link rel="canonical" href="https://SEU-USUARIO.github.io/SEU-REPO/" />
+  <link rel="canonical" href="https://promo.devpbs.com.br/" />
 
   <!-- Open Graph (tráfego pago / compartilhamento) -->
-  <meta property="og:title" content="Ofertas Imperdíveis | Melhores Produtos no Mercado Livre" />
-  <meta property="og:description" content="Curadoria exclusiva de produtos com melhor custo-benefício do Mercado Livre." />
+  <meta property="og:title" content="Melhores Ofertas do Mercado Livre com Frete Grátis" />
+  <meta property="og:description" content="Produtos mais vendidos com desconto e entrega rápida. Economize agora!" />
   <meta property="og:type" content="website" />
   <meta property="og:image" content="img/og-image.jpg" />
+  <meta property="og:url" content="https://promo.devpbs.com.br/" />
 
   <!-- ===== PERFORMANCE ===== -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -30,9 +32,10 @@
   {
     "@context": "https://schema.org",
     "@type": "ItemList",
-    "name": "Ofertas Selecionadas Mercado Livre",
-    "description": "Curadoria dos melhores produtos com melhor custo-benefício",
-    "numberOfItems": "3"
+    "name": "Melhores Ofertas do Mercado Livre",
+    "description": "Produtos mais vendidos com desconto, frete grátis e entrega rápida",
+    "numberOfItems": "3",
+    "url": "https://promo.devpbs.com.br/"
   }
   </script>
 
@@ -63,7 +66,7 @@
         Ofertas Selecionadas que <span>Valem Cada Centavo</span>
       </h1>
       <p class="hero-sub" data-config="hero_subheadline">
-        Curadoria exclusiva de produtos com melhor custo-benefício do Mercado Livre
+        Os produtos mais vendidos do Mercado Livre — com desconto, frete grátis e entrega rápida para você economizar de verdade
       </p>
       <div class="prova-social">
         <span data-config="prova_social">⭐ Mais de 12.000 compradores satisfeitos este mês</span>
@@ -100,32 +103,36 @@
   <!-- ===== MAIN CONTENT ===== -->
   <main class="container">
 
-    <!-- === PRODUTO DESTAQUE (70%) === -->
-    <div class="section-header">
-      <p class="section-label">Recomendação Principal</p>
-      <h2 class="section-titulo">Nossa Escolha #1</h2>
-    </div>
+    <!-- Grid desktop: destaque à esquerda, secundários à direita -->
+    <div class="main-grid">
 
-    <!-- Renderizado pelo JavaScript -->
-    <div class="produto-destaque-wrap" id="destaque-wrap">
-      <!-- Placeholder enquanto carrega -->
-      <div style="background:#fff;border-radius:16px;height:300px;display:flex;align-items:center;justify-content:center;color:#ccc;font-size:14px;">
-        Carregando...
-      </div>
-    </div>
+      <!-- === PRODUTO DESTAQUE (coluna esquerda no desktop) === -->
+      <div>
+        <div class="section-header">
+          <p class="section-label">Recomendação Principal</p>
+          <h2 class="section-titulo">Nossa Escolha #1</h2>
+        </div>
 
-    <!-- === PRODUTOS SECUNDÁRIOS (20% + 10%) === -->
-    <div id="outros-wrap">
-      <div class="section-header" style="padding-top:24px;">
-        <p class="section-label">Mais Opções</p>
-        <h2 class="section-titulo">Veja Também</h2>
+        <div class="produto-destaque-wrap" id="destaque-wrap">
+          <div style="background:#fff;border-radius:16px;height:300px;display:flex;align-items:center;justify-content:center;color:#ccc;font-size:14px;">
+            Carregando...
+          </div>
+        </div>
       </div>
 
-      <div class="outros-produtos-wrap">
-        <!-- Renderizado pelo JavaScript -->
-        <div class="outros-grid" id="outros-grid"></div>
+      <!-- === PRODUTOS SECUNDÁRIOS (coluna direita no desktop) === -->
+      <div id="outros-wrap">
+        <div class="section-header">
+          <p class="section-label">Mais Opções</p>
+          <h2 class="section-titulo">Veja Também</h2>
+        </div>
+
+        <div class="outros-produtos-wrap">
+          <div class="outros-grid" id="outros-grid"></div>
+        </div>
       </div>
-    </div>
+
+    </div><!-- /main-grid -->
 
     <!-- Sem resultados -->
     <div id="sem-resultados" class="sem-resultados" aria-live="polite">
@@ -134,7 +141,7 @@
 
     <!-- === CTA SECUNDÁRIO — LISTA ML === -->
     <div class="cta-lista" role="complementary" aria-label="Ver mais ofertas">
-      <p>Quer ver este e outros produtos em promoção?<br>Veja nossa seleção completa.</p>
+      <p>Quer ver mais produtos em promoção com frete grátis?<br>Veja nossa seleção completa no Mercado Livre.</p>
       <a
         id="btn-lista"
         href="#"

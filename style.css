@@ -31,7 +31,11 @@
   --font-titulo: 'Sora', sans-serif;
   --font-corpo: 'Inter', sans-serif;
   --transition: 0.22s cubic-bezier(0.4, 0, 0.2, 1);
-  --max-width: 680px;
+
+  /* === LARGURAS === */
+  --max-width-mobile: 680px;
+  --max-width-desktop: 1100px;
+  --max-width: var(--max-width-mobile);
 }
 
 /* === RESET === */
@@ -52,7 +56,7 @@ body {
   color: var(--cor-texto);
   line-height: 1.6;
   min-height: 100vh;
-  padding-bottom: 90px; /* espaço para sticky btn */
+  padding-bottom: 90px;
   overflow-x: hidden;
 }
 
@@ -127,7 +131,7 @@ a {
   font-size: 15px;
   color: rgba(255,255,255,0.75);
   margin-bottom: 18px;
-  max-width: 400px;
+  max-width: 480px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -293,9 +297,9 @@ a {
   width: 100%;
   aspect-ratio: 16/9;
   object-fit: cover;
-  object-position: center; /* Garante que o produto fique no meio */
+  object-position: center;
   background: #f0f0f0;
-  image-rendering: -webkit-optimize-contrast; /* Melhora a nitidez */
+  image-rendering: -webkit-optimize-contrast;
 }
 
 .produto-destaque-body {
@@ -458,10 +462,9 @@ a {
   object-position: center;
   background: #f0f0f0;
   image-rendering: -webkit-optimize-contrast;
-  transition: transform 0.3s ease; /* Prepara para o efeito de zoom */
+  transition: transform 0.3s ease;
 }
 
-/* Adicione esta linha logo abaixo para o efeito de hover */
 .card-produto:hover .produto-img {
   transform: scale(1.05);
 }
@@ -607,7 +610,7 @@ a {
   background: var(--cor-fundo-card);
   border-top: 1px solid var(--cor-borda);
   padding: 12px 16px;
-  display: none; /* mostrado via JS ao rolar */
+  display: none;
 }
 
 .sticky-cta.visible {
@@ -626,9 +629,13 @@ a {
 }
 
 /* ============================================
-   DESKTOP (min-width: 640px)
+   DESKTOP (min-width: 768px)
    ============================================ */
-@media (min-width: 640px) {
+@media (min-width: 768px) {
+  :root {
+    --max-width: var(--max-width-desktop);
+  }
+
   body {
     padding-bottom: 0;
   }
@@ -637,18 +644,43 @@ a {
     display: none !important;
   }
 
+  /* Hero mais generoso */
   .hero {
-    padding: 56px 24px 48px;
+    padding: 64px 24px 56px;
   }
 
   .hero h1 {
-    font-size: 36px;
+    font-size: clamp(32px, 4vw, 48px);
   }
 
   .hero-sub {
-    font-size: 17px;
+    font-size: 18px;
+    max-width: 560px;
   }
 
+  /* Busca corrigida — ícone alinhado ao container real */
+  .busca-wrap {
+    padding: 16px 24px;
+  }
+
+  .busca-inner {
+    max-width: var(--max-width);
+  }
+
+  .busca-input {
+    padding: 13px 20px 13px 48px;
+    font-size: 15px;
+  }
+
+  .busca-icon {
+    left: 16px;
+  }
+
+  .container {
+    padding: 0 24px;
+  }
+
+  /* Seção headers sem padding horizontal extra */
   .produto-destaque-wrap,
   .outros-produtos-wrap,
   .section-header {
@@ -656,25 +688,78 @@ a {
     padding-right: 0;
   }
 
-  .busca-wrap {
-    padding: 14px 0;
+  /* Layout desktop: destaque + secundários lado a lado */
+  .main-grid {
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    gap: 28px;
+    align-items: start;
   }
 
-  .container {
-    padding: 0 24px;
+  /* Destaque ocupa coluna esquerda inteira */
+  .produto-destaque-wrap {
+    padding: 20px 0 8px;
+    grid-row: span 2;
+  }
+
+  /* Secundários em coluna à direita, empilhados */
+  #outros-wrap {
+    /* fica na coluna direita */
   }
 
   .outros-grid {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     gap: 16px;
   }
 
+  /* Card secundário vira horizontal no desktop */
+  .card-produto {
+    flex-direction: row;
+    max-height: 160px;
+  }
+
+  .card-produto .produto-img {
+    width: 140px;
+    min-width: 140px;
+    aspect-ratio: 1/1;
+    border-radius: 0;
+  }
+
+  .card-produto:hover .produto-img {
+    transform: scale(1.03);
+  }
+
+  .card-body {
+    padding: 14px 16px;
+  }
+
   .card-titulo { font-size: 14px; }
-  .card-descricao { -webkit-line-clamp: 3; }
+  .card-descricao {
+    -webkit-line-clamp: 2;
+    font-size: 12px;
+  }
 
   .cta-lista {
     margin-left: 0;
     margin-right: 0;
+  }
+
+  /* Seção header do lado direito sem padding-top extra */
+  #outros-wrap .section-header {
+    padding-top: 20px;
+  }
+}
+
+/* ============================================
+   LARGE DESKTOP (min-width: 1200px)
+   ============================================ */
+@media (min-width: 1200px) {
+  .hero {
+    padding: 80px 24px 72px;
+  }
+
+  .hero h1 {
+    font-size: 52px;
   }
 }
 
