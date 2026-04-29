@@ -293,7 +293,9 @@ a {
   width: 100%;
   aspect-ratio: 16/9;
   object-fit: cover;
+  object-position: center; /* Garante que o produto fique no meio */
   background: #f0f0f0;
+  image-rendering: -webkit-optimize-contrast; /* Melhora a nitidez */
 }
 
 .produto-destaque-body {
@@ -453,7 +455,15 @@ a {
   width: 100%;
   aspect-ratio: 1/1;
   object-fit: cover;
+  object-position: center;
   background: #f0f0f0;
+  image-rendering: -webkit-optimize-contrast;
+  transition: transform 0.3s ease; /* Prepara para o efeito de zoom */
+}
+
+/* Adicione esta linha logo abaixo para o efeito de hover */
+.card-produto:hover .produto-img {
+  transform: scale(1.05);
 }
 
 .card-body {
