@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- ===== SEO ===== -->
+  <title>Ofertas Imperdíveis | Melhores Produtos no Mercado Livre</title>
+  <meta name="description" content="Selecionamos as melhores ofertas do Mercado Livre com custo-benefício comprovado. Confira preços e compre com segurança." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://SEU-USUARIO.github.io/SEU-REPO/" />
+
+  <!-- Open Graph (tráfego pago / compartilhamento) -->
+  <meta property="og:title" content="Ofertas Imperdíveis | Melhores Produtos no Mercado Livre" />
+  <meta property="og:description" content="Curadoria exclusiva de produtos com melhor custo-benefício do Mercado Livre." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="img/og-image.jpg" />
+
+  <!-- ===== PERFORMANCE ===== -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="dns-prefetch" href="https://www.mercadolivre.com.br" />
+
+  <!-- ===== STYLESHEET ===== -->
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- ===== SCHEMA PRODUCT (SEO) ===== -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "Ofertas Selecionadas Mercado Livre",
+    "description": "Curadoria dos melhores produtos com melhor custo-benefício",
+    "numberOfItems": "3"
+  }
+  </script>
+
+  <!-- ===== GOOGLE ANALYTICS (opcional) =====
+  Substitua G-XXXXXXXX pelo seu Measurement ID:
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXX');
+  </script>
+  ===== -->
+
+</head>
+<body>
+
+  <!-- ===== ESCASSEZ BAR ===== -->
+  <div class="escassez-bar" role="alert">
+    <span data-config="escassez">🔥 Estoque limitado — Preços podem mudar a qualquer momento</span>
+  </div>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero" aria-label="Destaque principal">
+    <div class="container">
+      <div class="hero-badge">Ofertas Verificadas</div>
+      <h1 data-config="hero_headline">
+        Ofertas Selecionadas que <span>Valem Cada Centavo</span>
+      </h1>
+      <p class="hero-sub" data-config="hero_subheadline">
+        Curadoria exclusiva de produtos com melhor custo-benefício do Mercado Livre
+      </p>
+      <div class="prova-social">
+        <span data-config="prova_social">⭐ Mais de 12.000 compradores satisfeitos este mês</span>
+      </div>
+      <button
+        id="btn-hero"
+        class="btn-hero"
+        aria-label="Ver melhor oferta"
+      >
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+        Ver Melhor Oferta
+      </button>
+    </div>
+  </section>
+
+  <!-- ===== BUSCA ===== -->
+  <div class="busca-wrap" role="search">
+    <div class="busca-inner container">
+      <svg class="busca-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
+        <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+      </svg>
+      <input
+        id="busca-input"
+        type="search"
+        class="busca-input"
+        placeholder="Buscar produto..."
+        aria-label="Buscar produtos"
+        autocomplete="off"
+        spellcheck="false"
+      />
+    </div>
+  </div>
+
+  <!-- ===== MAIN CONTENT ===== -->
+  <main class="container">
+
+    <!-- === PRODUTO DESTAQUE (70%) === -->
+    <div class="section-header">
+      <p class="section-label">Recomendação Principal</p>
+      <h2 class="section-titulo">Nossa Escolha #1</h2>
+    </div>
+
+    <!-- Renderizado pelo JavaScript -->
+    <div class="produto-destaque-wrap" id="destaque-wrap">
+      <!-- Placeholder enquanto carrega -->
+      <div style="background:#fff;border-radius:16px;height:300px;display:flex;align-items:center;justify-content:center;color:#ccc;font-size:14px;">
+        Carregando...
+      </div>
+    </div>
+
+    <!-- === PRODUTOS SECUNDÁRIOS (20% + 10%) === -->
+    <div id="outros-wrap">
+      <div class="section-header" style="padding-top:24px;">
+        <p class="section-label">Mais Opções</p>
+        <h2 class="section-titulo">Veja Também</h2>
+      </div>
+
+      <div class="outros-produtos-wrap">
+        <!-- Renderizado pelo JavaScript -->
+        <div class="outros-grid" id="outros-grid"></div>
+      </div>
+    </div>
+
+    <!-- Sem resultados -->
+    <div id="sem-resultados" class="sem-resultados" aria-live="polite">
+      Nenhum produto encontrado para sua busca.
+    </div>
+
+    <!-- === CTA SECUNDÁRIO — LISTA ML === -->
+    <div class="cta-lista" role="complementary" aria-label="Ver mais ofertas">
+      <p>Quer ver este e outros produtos em promoção?<br>Veja nossa seleção completa.</p>
+      <a
+        id="btn-lista"
+        href="#"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="btn-lista"
+        aria-label="Ver mais ofertas no Mercado Livre"
+      >
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        Ver mais ofertas
+      </a>
+    </div>
+
+  </main>
+
+  <!-- ===== RODAPÉ ===== -->
+  <footer class="rodape">
+    <p>
+      Este site contém links de afiliado. Ao comprar pelos nossos links, podemos receber uma comissão sem custo adicional para você.
+    </p>
+  </footer>
+
+  <!-- ===== STICKY CTA MOBILE ===== -->
+  <div id="sticky-cta" class="sticky-cta" aria-hidden="true">
+    <a
+      id="sticky-btn"
+      href="#"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="btn-cta"
+      aria-label="Ver melhor oferta no Mercado Livre"
+    >
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+      Ver Melhor Oferta
+    </a>
+  </div>
+
+  <!-- ===== SCRIPT ===== -->
+  <script src="script.js"></script>
+
+</body>
+</html>

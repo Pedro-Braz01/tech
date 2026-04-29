@@ -1,0 +1,49 @@
+{
+  "config": {
+    "site_titulo": "Ofertas Imperdíveis",
+    "site_subtitulo": "Selecionamos as melhores ofertas do Mercado Livre para você",
+    "hero_headline": "Ofertas Selecionadas que Valem Cada Centavo",
+    "hero_subheadline": "Curadoria exclusiva de produtos com melhor custo-benefício do Mercado Livre",
+    "prova_social": "⭐ Mais de 12.000 compradores satisfeitos este mês",
+    "escassez": "🔥 Estoque limitado — Preços podem mudar a qualquer momento"
+  },
+  "produtos": [
+    {
+      "id": 1,
+      "titulo": "FONE LENOVO",
+      "descricao": "MELHOR FONE CUSTO BENEFICIO DO MOMENTO",
+      "preco": "R$129,90",
+      "preco_de": "R$189,90",
+      "imagem": "img/produto1.jpg",
+      "link": "LINK_AFILIADO_1",
+      "badge": "⭐ Mais Vendido",
+      "destaque": true,
+      "microcopy": "Frete grátis para todo Brasil"
+    },
+    {
+      "id": 2,
+      "titulo": "Produto 2",
+      "descricao": "Ótima opção com excelente relação qualidade-preço para quem busca economia.",
+      "preco": "R$79,90",
+      "preco_de": "",
+      "imagem": "img/produto2.jpg",
+      "link": "LINK_AFILIADO_2",
+      "badge": "💰 Melhor Preço",
+      "destaque": false,
+      "microcopy": "Entrega rápida"
+    },
+    {
+      "id": 3,
+      "titulo": "Produto 3",
+      "descricao": "Versão premium com recursos avançados para quem quer o melhor.",
+      "preco": "R$199,90",
+      "preco_de": "R$299,90",
+      "imagem": "img/produto3.jpg",
+      "link": "LINK_AFILIADO_3",
+      "badge": "🏆 Premium",
+      "destaque": false,
+      "microcopy": "Parcelamento sem juros"
+    }
+  ],
+  "link_lista_promocoes": "LINK_LISTA_MERCADO_LIVRE"
+}
