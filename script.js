@@ -77,7 +77,7 @@
     if (!wrap) return;
 
     const temPrecoAnterior = p.preco_de && p.preco_de.trim() !== '';
-    const temBlog = p.link_blog && p.link_blog.trim() !== '' && !p.link_blog.startsWith('LINK_');
+    const temBlog = p.link_blog && p.link_blog.trim() !== '';
     const textoBlog = p.texto_blog || 'Saiba mais e veja as avaliações';
 
     wrap.innerHTML = `
@@ -163,7 +163,7 @@
     produtos.forEach(p => {
       const temPrecoAnterior = p.preco_de && p.preco_de.trim() !== '';
       const badgeClass = p.badge && p.badge.includes('Preço') ? 'badge-preco' : 'badge-premium';
-      const temBlog = p.link_blog && p.link_blog.trim() !== '' && !p.link_blog.startsWith('LINK_');
+      const temBlog = p.link_blog && p.link_blog.trim() !== '';
       const textoBlog = p.texto_blog || 'Saiba mais e veja as avaliações';
 
       const card = document.createElement('article');

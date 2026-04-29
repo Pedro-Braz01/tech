@@ -627,9 +627,9 @@ a {
   background: transparent;
   color: var(--cor-texto-suave);
   font-family: var(--font-titulo);
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 600;
-  padding: 8px 8px;
+  padding: 11px 8px;
   border-radius: var(--radius-btn);
   border: 1.5px solid var(--cor-borda);
   cursor: pointer;
@@ -720,11 +720,12 @@ a {
 
   /* Busca corrigida — ícone alinhado ao container real */
   .busca-wrap {
-    padding: 16px 24px;
+    padding: 16px 0;
   }
 
   .busca-inner {
     max-width: var(--max-width);
+    padding: 0 24px;
   }
 
   .busca-input {
@@ -733,7 +734,7 @@ a {
   }
 
   .busca-icon {
-    left: 16px;
+    left: 40px;
   }
 
   .container {
