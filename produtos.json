@@ -24,16 +24,16 @@
     },
     {
       "id": 2,
-      "titulo": "Produto 2",
-      "descricao": "Ótima opção com excelente relação qualidade-preço para quem busca economia.",
-      "preco": "R$79,90",
-      "preco_de": "",
-      "imagem": "img/produto2.jpg",
-      "link": "LINK_AFILIADO_2",
+      "titulo": "Power Bank Carregador Portátil 20000mah Turbo 22.5w Display",
+      "descricao": "Nunca mais passe pelo sufoco de ficar sem bateria no meio da rua ou em viagens. Com o Carregador Portátil de 20.000mAh das Lojas Casenn e MAANA STORE, você garante até 6 cargas completas no seu smartphone com a velocidade máxima da tecnologia Turbo 22,5W.",
+      "preco": "R$96,55",
+      "preco_de": "R$159,90",
+      "imagem": "img/produto2.png",
+      "link": "https://meli.la/2pacDsH",
       "badge": "💰 Melhor Preço",
       "destaque": false,
       "microcopy": "Entrega rápida",
-      "link_blog": "LINK_DO_SEU_BLOG_PRODUTO_2",
+      "link_blog": "https://meli.la/2pacDsH",
       "texto_blog": "Saiba mais e veja as avaliações"
     },
     {
@@ -51,5 +51,5 @@
       "texto_blog": "Saiba mais e veja as avaliações"
     }
   ],
-  "link_lista_promocoes": "LINK_LISTA_MERCADO_LIVRE"
+  "link_lista_promocoes": "https://meli.la/2RCDXRs"
 }
