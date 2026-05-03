@@ -3,25 +3,16 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>🍬 Paçoca — Painel de Produtos</title>
+<title>🍬 adm — Painel de Produtos</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Geist+Mono:wght@400;500&family=Geist:wght@400;500;600&display=swap" rel="stylesheet"/>
 <style>
 :root{
-  --bg:#0c0c10;
-  --surface:#14141a;
-  --surface2:#1c1c25;
-  --border:#2a2a38;
-  --orange:#ff5722;
-  --orange2:#ff8a50;
-  --green:#00e676;
-  --red:#ff4444;
-  --yellow:#ffc107;
-  --text:#f0eeff;
-  --muted:#7070a0;
-  --ft:'Syne',sans-serif;
-  --fb:'Geist',sans-serif;
-  --fm:'Geist Mono',monospace;
+  --bg:#0c0c10;--surface:#14141a;--surface2:#1c1c25;
+  --border:#2a2a38;--orange:#ff5722;--orange2:#ff8a50;
+  --green:#00e676;--red:#ff4444;--yellow:#ffc107;
+  --text:#f0eeff;--muted:#7070a0;
+  --ft:'Syne',sans-serif;--fb:'Geist',sans-serif;--fm:'Geist Mono',monospace;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
@@ -29,36 +20,27 @@ body{background:var(--bg);color:var(--text);font-family:var(--fb);min-height:100
 a{color:inherit;text-decoration:none}
 input,textarea,select{font-family:var(--fb)}
 
-/* ── GRID NOISE OVERLAY ── */
-body::before{
-  content:'';position:fixed;inset:0;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4'%3E%3Crect width='1' height='1' fill='rgba(255,255,255,0.015)'/%3E%3C/svg%3E");
-  pointer-events:none;z-index:0
-}
-
-/* ── HEADER ── */
+/* HEADER */
 .hdr{
   position:sticky;top:0;z-index:100;
-  background:rgba(12,12,16,0.92);
-  backdrop-filter:blur(16px);
+  background:rgba(12,12,16,.95);backdrop-filter:blur(16px);
   border-bottom:1px solid var(--border);
-  padding:0 28px;
-  display:flex;align-items:center;justify-content:space-between;
-  height:60px;
+  padding:0 24px;display:flex;align-items:center;
+  justify-content:space-between;height:60px;gap:12px
 }
 .hdr-logo{
-  font-family:var(--ft);font-size:22px;font-weight:800;
+  font-family:var(--ft);font-size:20px;font-weight:800;
   background:linear-gradient(120deg,var(--orange),var(--orange2));
   -webkit-background-clip:text;-webkit-text-fill-color:transparent;
-  display:flex;align-items:center;gap:8px
+  white-space:nowrap;display:flex;align-items:center;gap:8px
 }
-.hdr-logo span{-webkit-text-fill-color:var(--text);font-size:14px;font-weight:400;color:var(--muted)}
-.hdr-actions{display:flex;gap:10px}
+.hdr-logo small{-webkit-text-fill-color:var(--muted);font-size:12px;font-weight:400}
+.hdr-actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
 
-/* ── BUTTONS ── */
+/* BUTTONS */
 .btn{
   display:inline-flex;align-items:center;gap:6px;
-  padding:9px 18px;border-radius:8px;
+  padding:8px 16px;border-radius:8px;
   font-family:var(--fb);font-size:13px;font-weight:600;
   cursor:pointer;border:none;transition:all .18s;white-space:nowrap
 }
@@ -66,223 +48,228 @@ body::before{
 .btn-primary:hover{background:#e64a19;transform:translateY(-1px)}
 .btn-ghost{background:transparent;color:var(--text);border:1px solid var(--border)}
 .btn-ghost:hover{border-color:var(--orange);color:var(--orange)}
-.btn-danger{background:transparent;color:var(--red);border:1px solid var(--red)}
+.btn-danger{background:transparent;color:var(--red);border:1px solid rgba(255,68,68,.4)}
 .btn-danger:hover{background:var(--red);color:#fff}
 .btn-sm{padding:7px 13px;font-size:12px}
-.btn-green{background:var(--green);color:#000}
-.btn-green:hover{background:#00c060}
+.btn-push{background:linear-gradient(135deg,#238636,#2ea043);color:#fff}
+.btn-push:hover{background:linear-gradient(135deg,#1a6128,#238636);transform:translateY(-1px)}
+.btn-push:disabled{opacity:.45;cursor:not-allowed;transform:none!important}
 
-/* ── MAIN LAYOUT ── */
-.wrap{max-width:1200px;margin:0 auto;padding:32px 28px 80px;position:relative;z-index:1}
+/* GH STATUS BADGE */
+.gh-status{
+  display:flex;align-items:center;gap:6px;
+  font-size:12px;font-weight:600;padding:6px 12px;
+  border-radius:50px;border:1px solid var(--border);
+  color:var(--muted);cursor:pointer;transition:all .18s
+}
+.gh-status.ok{border-color:rgba(0,230,118,.35);color:var(--green)}
+.gh-status:hover{border-color:var(--orange);color:var(--orange)}
+.gh-dot{width:7px;height:7px;border-radius:50%;background:currentColor}
 
-/* ── SECTION TITLE ── */
+/* WRAP */
+.wrap{max-width:1140px;margin:0 auto;padding:32px 24px 80px;position:relative}
+
+/* SECTION TITLE */
 .sec-title{
-  font-family:var(--ft);font-size:13px;font-weight:700;
-  letter-spacing:3px;text-transform:uppercase;
-  color:var(--orange);margin-bottom:20px;
-  display:flex;align-items:center;gap:10px
+  font-family:var(--ft);font-size:11px;font-weight:700;
+  letter-spacing:3px;text-transform:uppercase;color:var(--orange);
+  margin-bottom:20px;display:flex;align-items:center;gap:10px
 }
 .sec-title::after{content:'';flex:1;height:1px;background:var(--border)}
 
-/* ── CONFIG CARD ── */
+/* CONFIG CARD */
 .config-card{
   background:var(--surface);border:1px solid var(--border);
   border-radius:14px;padding:24px;margin-bottom:32px
 }
-.config-grid{
-  display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-  gap:16px
-}
+.config-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
 
-/* ── FORM FIELDS ── */
-.field{display:flex;flex-direction:column;gap:6px}
-.field label{
-  font-size:11px;font-weight:600;letter-spacing:1px;
-  text-transform:uppercase;color:var(--muted)
-}
+/* FIELDS */
+.field{display:flex;flex-direction:column;gap:5px}
+.field label{font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--muted)}
 .field input,.field textarea,.field select{
   background:var(--surface2);border:1px solid var(--border);
   border-radius:8px;padding:10px 14px;
-  color:var(--text);font-size:13px;outline:none;
-  transition:border-color .18s
+  color:var(--text);font-size:13px;outline:none;transition:border-color .18s
 }
-.field input:focus,.field textarea:focus,.field select:focus{border-color:var(--orange)}
-.field textarea{resize:vertical;min-height:80px;line-height:1.5}
+.field input:focus,.field textarea:focus{border-color:var(--orange)}
+.field textarea{resize:vertical;min-height:78px;line-height:1.5}
 .field input::placeholder,.field textarea::placeholder{color:var(--muted)}
+.form-full{grid-column:1/-1}
 
-/* ── PRODUTOS LIST ── */
-.produtos-list{display:flex;flex-direction:column;gap:16px}
+/* PRODUTOS LIST */
+.produtos-list{display:flex;flex-direction:column;gap:14px}
 
-/* ── PRODUTO CARD ── */
+/* PROD CARD */
 .prod-card{
   background:var(--surface);border:1px solid var(--border);
-  border-radius:14px;overflow:hidden;
-  transition:border-color .2s
+  border-radius:14px;overflow:hidden;transition:border-color .2s
 }
-.prod-card:hover{border-color:rgba(255,87,34,.35)}
-
+.prod-card:hover{border-color:rgba(255,87,34,.3)}
 .prod-card.is-destaque{
   border-color:var(--orange);
-  box-shadow:0 0 0 1px rgba(255,87,34,.2),0 8px 32px rgba(255,87,34,.1)
+  box-shadow:0 0 0 1px rgba(255,87,34,.15),0 6px 28px rgba(255,87,34,.1)
 }
 
 .prod-header{
-  display:flex;align-items:center;gap:14px;
-  padding:16px 20px;cursor:pointer;
-  border-bottom:1px solid transparent;
-  transition:border-color .18s
+  display:flex;align-items:center;gap:12px;padding:14px 18px;
+  cursor:pointer;border-bottom:1px solid transparent;transition:border-color .18s
 }
-.prod-card.open .prod-header{border-color:var(--border)}
+.prod-card.open .prod-header{border-bottom-color:var(--border)}
 
 .prod-num{
-  font-family:var(--ft);font-size:22px;font-weight:800;
-  color:var(--border);min-width:36px;line-height:1
+  font-family:var(--ft);font-size:20px;font-weight:800;
+  color:var(--border);min-width:32px;line-height:1
 }
 .prod-card.is-destaque .prod-num{color:var(--orange)}
 
 .prod-thumb{
-  width:52px;height:52px;border-radius:8px;
+  width:50px;height:50px;border-radius:8px;
   object-fit:cover;background:var(--surface2);
   border:1px solid var(--border);flex-shrink:0
 }
 .prod-thumb-empty{
-  width:52px;height:52px;border-radius:8px;
+  width:50px;height:50px;border-radius:8px;
   background:var(--surface2);border:1px dashed var(--border);
   flex-shrink:0;display:flex;align-items:center;justify-content:center;
-  color:var(--muted);font-size:20px
+  color:var(--muted);font-size:18px
 }
 
 .prod-info{flex:1;min-width:0}
 .prod-name{
-  font-family:var(--ft);font-size:15px;font-weight:700;
-  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
-  margin-bottom:4px
+  font-family:var(--ft);font-size:14px;font-weight:700;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-bottom:3px
 }
 .prod-meta{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
 .prod-price{font-size:13px;color:var(--green);font-weight:600;font-family:var(--fm)}
-.prod-price-old{font-size:12px;color:var(--muted);text-decoration:line-through;font-family:var(--fm)}
+.prod-price-old{font-size:11px;color:var(--muted);text-decoration:line-through;font-family:var(--fm)}
 
-.prod-badges{display:flex;gap:6px;align-items:center}
 .badge{
-  font-size:10px;font-weight:700;letter-spacing:.5px;
+  font-size:9px;font-weight:700;letter-spacing:.5px;
   text-transform:uppercase;padding:2px 8px;border-radius:50px
 }
 .badge-dest{background:rgba(255,87,34,.15);color:var(--orange);border:1px solid rgba(255,87,34,.3)}
-.badge-sec{background:rgba(112,112,160,.15);color:var(--muted);border:1px solid var(--border)}
+.badge-sec{background:rgba(112,112,160,.12);color:var(--muted);border:1px solid var(--border)}
 
-.prod-actions{display:flex;gap:8px;flex-shrink:0}
+.prod-actions{display:flex;gap:6px;flex-shrink:0}
 
-.chevron{
-  transition:transform .22s;color:var(--muted);
-  display:flex;align-items:center
-}
+.chevron{transition:transform .2s;color:var(--muted);display:flex;align-items:center}
 .prod-card.open .chevron{transform:rotate(180deg)}
 
-/* ── PROD FORM ── */
-.prod-form{
-  padding:20px;
-  display:none;
-  flex-direction:column;gap:0
-}
+/* PROD FORM */
+.prod-form{padding:20px;display:none;flex-direction:column;gap:0}
 .prod-card.open .prod-form{display:flex}
 
-.form-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-  gap:14px;margin-bottom:14px
-}
+.form-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-bottom:12px}
 .form-grid-3{grid-template-columns:1fr 1fr 1fr}
-.form-full{grid-column:1/-1}
 
-.form-section-label{
-  font-size:10px;font-weight:700;letter-spacing:2px;
-  text-transform:uppercase;color:var(--muted);
-  padding:12px 0 8px;border-top:1px solid var(--border);
-  margin-top:6px
+.form-sep{
+  font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;
+  color:var(--muted);padding:10px 0 6px;
+  border-top:1px solid var(--border);margin-top:4px
 }
 
-/* checkbox destaque */
+/* DESTAQUE TOGGLE */
 .destaque-toggle{
   display:flex;align-items:center;gap:10px;
   padding:12px 16px;border-radius:8px;
   background:var(--surface2);border:1px solid var(--border);
-  cursor:pointer;transition:border-color .18s;
-  font-size:13px;font-weight:500
+  cursor:pointer;transition:border-color .18s;font-size:13px;font-weight:500
 }
-.destaque-toggle:has(input:checked){
-  border-color:var(--orange);background:rgba(255,87,34,.06)
-}
+.destaque-toggle:has(input:checked){border-color:var(--orange);background:rgba(255,87,34,.06)}
 .destaque-toggle input{accent-color:var(--orange);width:16px;height:16px}
 
-/* imagem preview */
-.img-field{display:flex;gap:12px;align-items:flex-start}
+/* IMG PREVIEW */
+.img-row{display:flex;gap:12px;align-items:flex-start}
 .img-preview-box{
-  width:80px;height:80px;border-radius:8px;
+  width:76px;height:76px;border-radius:8px;
   background:var(--surface2);border:1px dashed var(--border);
   overflow:hidden;flex-shrink:0;display:flex;align-items:center;
-  justify-content:center;color:var(--muted);font-size:24px
+  justify-content:center;color:var(--muted);font-size:22px
 }
 .img-preview-box img{width:100%;height:100%;object-fit:cover}
-.img-field .field{flex:1}
 
-/* ── ADD BUTTON ── */
-.add-wrap{
-  display:flex;justify-content:center;
-  margin-top:8px
-}
+/* ADD BTN */
 .btn-add{
-  display:flex;align-items:center;gap:8px;
+  display:flex;align-items:center;justify-content:center;gap:8px;
   background:transparent;color:var(--orange);
-  border:1.5px dashed var(--orange);
-  border-radius:10px;padding:14px 28px;
-  font-family:var(--fb);font-size:14px;font-weight:600;
-  cursor:pointer;transition:all .18s;width:100%
-  ;justify-content:center
+  border:1.5px dashed var(--orange);border-radius:10px;
+  padding:14px 28px;font-family:var(--fb);font-size:14px;font-weight:600;
+  cursor:pointer;transition:all .18s;width:100%;margin-top:8px
 }
 .btn-add:hover{background:rgba(255,87,34,.06)}
 
-/* ── TOAST ── */
-.toast{
-  position:fixed;bottom:28px;right:28px;z-index:999;
-  background:var(--surface2);border:1px solid var(--border);
-  border-radius:10px;padding:14px 20px;
-  font-size:13px;font-weight:600;
-  display:flex;align-items:center;gap:8px;
-  transform:translateY(80px);opacity:0;
-  transition:all .28s cubic-bezier(.34,1.56,.64,1);
-  pointer-events:none;max-width:320px
+/* MODAL */
+.modal-overlay{
+  position:fixed;inset:0;z-index:200;
+  background:rgba(0,0,0,.75);backdrop-filter:blur(8px);
+  display:none;align-items:center;justify-content:center;padding:20px
 }
-.toast.show{transform:translateY(0);opacity:1}
-.toast.ok{border-color:var(--green);color:var(--green)}
-.toast.err{border-color:var(--red);color:var(--red)}
+.modal-overlay.open{display:flex}
+.modal{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:16px;width:100%;max-width:540px;
+  animation:mIn .2s cubic-bezier(.34,1.56,.64,1)
+}
+@keyframes mIn{from{transform:scale(.92);opacity:0}to{transform:scale(1);opacity:1}}
+.modal-hdr{
+  padding:18px 24px;border-bottom:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between
+}
+.modal-hdr h3{font-family:var(--ft);font-size:16px;font-weight:700}
+.modal-x{background:transparent;border:none;color:var(--muted);font-size:20px;cursor:pointer;line-height:1;padding:4px}
+.modal-x:hover{color:var(--text)}
+.modal-body{padding:22px 24px;display:flex;flex-direction:column;gap:14px}
+.modal-footer{padding:14px 24px;border-top:1px solid var(--border);display:flex;gap:10px;justify-content:flex-end}
 
-/* ── JSON PREVIEW ── */
+/* INFO BOX */
+.info-box{
+  background:rgba(255,193,7,.06);border:1px solid rgba(255,193,7,.2);
+  border-radius:8px;padding:12px 14px;
+  font-size:12px;color:#c8a84b;line-height:1.7
+}
+.info-box a{color:var(--yellow);text-decoration:underline}
+.info-box code{
+  background:rgba(255,255,255,.08);padding:1px 5px;
+  border-radius:4px;font-family:var(--fm);font-size:11px
+}
+
+/* JSON PREVIEW */
 .json-wrap{
   background:var(--surface);border:1px solid var(--border);
   border-radius:14px;overflow:hidden;margin-top:32px
 }
-.json-header{
-  padding:14px 20px;border-bottom:1px solid var(--border);
+.json-hdr{
+  padding:12px 20px;border-bottom:1px solid var(--border);
   display:flex;align-items:center;justify-content:space-between
 }
-.json-header span{font-family:var(--fm);font-size:12px;color:var(--muted)}
 #json-out{
-  font-family:var(--fm);font-size:12px;line-height:1.7;
-  padding:20px;color:#b0b8d0;max-height:420px;overflow:auto;
+  font-family:var(--fm);font-size:11.5px;line-height:1.7;
+  padding:18px 20px;color:#9090c0;max-height:380px;overflow:auto;
   white-space:pre;background:var(--surface)
 }
 
-/* ── EMPTY STATE ── */
-.empty-img{
-  text-align:center;padding:40px 20px;
-  color:var(--muted);font-size:13px
+/* TOAST */
+.toast{
+  position:fixed;bottom:24px;right:24px;z-index:999;
+  background:var(--surface2);border:1px solid var(--border);
+  border-radius:10px;padding:13px 18px;font-size:13px;font-weight:600;
+  display:flex;align-items:center;gap:8px;
+  transform:translateY(70px);opacity:0;
+  transition:all .26s cubic-bezier(.34,1.56,.64,1);
+  pointer-events:none;max-width:300px
 }
-.empty-img .ico{font-size:40px;margin-bottom:8px}
+.toast.show{transform:translateY(0);opacity:1}
+.toast.ok{border-color:rgba(0,230,118,.4);color:var(--green)}
+.toast.err{border-color:rgba(255,68,68,.4);color:var(--red)}
 
-/* ── RESPONSIVE ── */
+.spin{display:inline-block;animation:spin .7s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+
 @media(max-width:600px){
-  .wrap{padding:20px 16px 80px}
-  .hdr{padding:0 16px}
+  .wrap{padding:20px 14px 80px}
+  .hdr{padding:0 14px}
+  .hdr-logo small{display:none}
   .form-grid-3{grid-template-columns:1fr 1fr}
   .prod-actions .btn span{display:none}
 }
@@ -290,20 +277,24 @@ body::before{
 </head>
 <body>
 
-<!-- HEADER -->
 <header class="hdr">
-  <div class="hdr-logo">
-    🍬 Paçoca
-    <span>/ painel de produtos</span>
-  </div>
+  <div class="hdr-logo">🍬 Paçoca <small>/ painel</small></div>
   <div class="hdr-actions">
+    <div class="gh-status" id="gh-status" onclick="abrirModalGH()">
+      <div class="gh-dot"></div>
+      <span id="gh-status-txt">Configurar GitHub</span>
+    </div>
     <button class="btn btn-ghost btn-sm" onclick="importarJSON()">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
-      Importar JSON
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+      <span>Importar</span>
     </button>
-    <button class="btn btn-primary btn-sm" onclick="salvarJSON()">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
-      Salvar produtos.json
+    <button class="btn btn-ghost btn-sm" onclick="salvarJSON()">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+      <span>Baixar JSON</span>
+    </button>
+    <button class="btn btn-push btn-sm" id="btn-push" onclick="publicarGitHub()">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 8 12 16"/><polyline points="8 12 12 8 16 12"/></svg>
+      <span>Publicar no GitHub</span>
     </button>
   </div>
 </header>
@@ -314,419 +305,387 @@ body::before{
   <div class="sec-title">⚙️ Configurações do Site</div>
   <div class="config-card">
     <div class="config-grid">
-      <div class="field">
-        <label>Título do Site</label>
-        <input id="cfg-titulo" type="text" placeholder="Melhores Ofertas do Mercado Livre"/>
-      </div>
-      <div class="field">
-        <label>Subtítulo</label>
-        <input id="cfg-subtitulo" type="text" placeholder="Os produtos mais vendidos..."/>
-      </div>
-      <div class="field">
-        <label>Hero Headline</label>
-        <input id="cfg-hero" type="text" placeholder="Ofertas Selecionadas..."/>
-      </div>
-      <div class="field">
-        <label>Hero Subheadline</label>
-        <input id="cfg-herosub" type="text" placeholder="Seleção exclusiva..."/>
-      </div>
-      <div class="field">
-        <label>Prova Social</label>
-        <input id="cfg-prova" type="text" placeholder="⭐ Mais de 12.000 compradores..."/>
-      </div>
-      <div class="field">
-        <label>Barra de Escassez</label>
-        <input id="cfg-escassez" type="text" placeholder="🔥 Estoque limitado..."/>
-      </div>
-      <div class="field" style="grid-column:1/-1">
-        <label>Link Lista de Promoções (botão rodapé)</label>
-        <input id="cfg-lista" type="url" placeholder="https://meli.la/..."/>
-      </div>
+      <div class="field"><label>Título do Site</label>
+        <input id="cfg-titulo" type="text" placeholder="Melhores Ofertas do Mercado Livre"/></div>
+      <div class="field"><label>Subtítulo</label>
+        <input id="cfg-subtitulo" type="text" placeholder="Os produtos mais vendidos..."/></div>
+      <div class="field"><label>Hero Headline</label>
+        <input id="cfg-hero" type="text" placeholder="Ofertas Selecionadas..."/></div>
+      <div class="field"><label>Hero Subheadline</label>
+        <input id="cfg-herosub" type="text" placeholder="Seleção exclusiva..."/></div>
+      <div class="field"><label>Prova Social</label>
+        <input id="cfg-prova" type="text" placeholder="⭐ Mais de 12.000 compradores..."/></div>
+      <div class="field"><label>Barra de Escassez</label>
+        <input id="cfg-escassez" type="text" placeholder="🔥 Estoque limitado..."/></div>
+      <div class="field form-full"><label>Link Lista de Promoções (botão rodapé)</label>
+        <input id="cfg-lista" type="url" placeholder="https://meli.la/..."/></div>
     </div>
   </div>
 
   <!-- PRODUTOS -->
   <div class="sec-title">📦 Produtos</div>
   <div id="produtos-list" class="produtos-list"></div>
-
-  <div class="add-wrap" style="margin-top:16px">
-    <button class="btn-add" onclick="adicionarProduto()">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
-      Adicionar Produto
-    </button>
-  </div>
+  <button class="btn-add" onclick="adicionarProduto()">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+    Adicionar Produto
+  </button>
 
   <!-- JSON PREVIEW -->
   <div class="json-wrap">
-    <div class="json-header">
-      <div class="sec-title" style="margin:0;font-size:11px">👁 Pré-visualização do JSON</div>
+    <div class="json-hdr">
+      <div class="sec-title" style="margin:0;font-size:10px">👁 produtos.json</div>
       <div style="display:flex;gap:8px">
         <button class="btn btn-ghost btn-sm" onclick="copiarJSON()">Copiar</button>
-        <span style="font-family:var(--fm);font-size:11px;color:var(--muted);align-self:center">produtos.json</span>
       </div>
     </div>
-    <pre id="json-out">// Preencha os campos acima e clique em "Salvar" para gerar o JSON</pre>
+    <pre id="json-out">// preencha os campos acima</pre>
   </div>
 
 </div>
 
+<!-- MODAL GITHUB -->
+<div class="modal-overlay" id="modal-gh" onclick="if(event.target===this)fecharModalGH()">
+  <div class="modal">
+    <div class="modal-hdr">
+      <h3>🔐 Configuração GitHub (segura)</h3>
+      <button class="modal-x" onclick="fecharModalGH()">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="info-box">
+        O token fica salvo no <strong>servidor Cloudflare Worker</strong> como variável de ambiente criptografada — nunca no seu browser.<br/><br/>
+        <strong>Passo 1 — Token GitHub:</strong><br/>
+        <a href="https://github.com/settings/tokens?type=beta" target="_blank">github.com → Settings → Developer Settings → Fine-grained tokens</a><br/>
+        → Repository access: seu repo → Permissions → Contents: <code>Read and write</code><br/><br/>
+        <strong>Passo 2 — Cloudflare Worker:</strong><br/>
+        Já deployou o <code>github-proxy-worker.js</code>? Cole a URL abaixo.<br/>
+        Ainda não? Veja o arquivo <code>github-proxy-worker.js</code> — instruções no topo.
+      </div>
+      <div class="field">
+        <label>URL do Cloudflare Worker (proxy seguro)</label>
+        <input id="gh-proxy" type="url" placeholder="https://github-proxy.SEU-USER.workers.dev"/>
+        <small style="color:var(--muted);font-size:11px;margin-top:3px">
+          Esta URL fica salva no seu browser. O token GitHub fica NO Worker, nunca aqui.
+        </small>
+      </div>
+      <div class="field">
+        <label>Usuário GitHub</label>
+        <input id="gh-owner" type="text" placeholder="seu-usuario-github"/>
+      </div>
+      <div class="field">
+        <label>Nome do Repositório</label>
+        <input id="gh-repo" type="text" placeholder="nome-do-repo"/>
+      </div>
+      <div class="field">
+        <label>Branch</label>
+        <input id="gh-branch" type="text" placeholder="main" value="main"/>
+      </div>
+      <div class="field">
+        <label>Caminho do arquivo no repositório</label>
+        <input id="gh-path" type="text" placeholder="produtos.json" value="produtos.json"/>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" onclick="fecharModalGH()">Cancelar</button>
+      <button class="btn btn-primary" onclick="salvarConfigGH()">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/></svg>
+        Salvar
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- IMPORTAR -->
+<input type="file" id="file-import" accept=".json" style="display:none" onchange="lerArquivo(event)"/>
 <!-- TOAST -->
 <div class="toast" id="toast"></div>
-
-<!-- INPUT IMPORTAR (hidden) -->
-<input type="file" id="file-import" accept=".json" style="display:none" onchange="lerArquivo(event)"/>
 
 <script>
 /* =============================================
    ESTADO
    ============================================= */
 let estado = {
-  config: {
-    site_titulo: 'Melhores Ofertas do Mercado Livre',
-    site_subtitulo: 'Os produtos mais vendidos com desconto e frete grátis',
-    hero_headline: 'Ofertas Selecionadas que Valem Cada Centavo',
-    hero_subheadline: 'Seleção exclusiva de produtos com melhor custo-benefício do Mercado Livre',
-    prova_social: '⭐ Mais de 12.000 compradores satisfeitos este mês',
-    escassez: '🔥 Estoque limitado — Preços podem mudar a qualquer momento'
+  config:{
+    site_titulo:'Melhores Ofertas do Mercado Livre',
+    site_subtitulo:'Os produtos mais vendidos com desconto e frete grátis',
+    hero_headline:'Ofertas Selecionadas que Valem Cada Centavo',
+    hero_subheadline:'Seleção exclusiva de produtos com melhor custo-benefício do Mercado Livre',
+    prova_social:'⭐ Mais de 12.000 compradores satisfeitos este mês',
+    escassez:'🔥 Estoque limitado — Preços podem mudar a qualquer momento'
   },
-  produtos: [],
-  link_lista_promocoes: ''
+  produtos:[],
+  link_lista_promocoes:''
 };
-
 let nextId = 10;
+const GH_KEY = 'pacoca_gh_v2';
 
 /* =============================================
-   INIT — carrega produtos.json se estiver no mesmo servidor
+   INIT
    ============================================= */
 window.addEventListener('DOMContentLoaded', async () => {
-  // tenta carregar produtos.json automaticamente
+  atualizarStatusGH();
+  // tenta auto-carregar produtos.json do mesmo servidor
   try {
     const r = await fetch('produtos.json');
-    if (r.ok) {
-      const data = await r.json();
-      carregarEstado(data);
-      toast('✅ produtos.json carregado automaticamente', 'ok');
-    } else { throw new Error(); }
-  } catch {
-    // sem arquivo: cria exemplo vazio
-    carregarEstado(estado);
-  }
+    if (r.ok) { carregarEstado(await r.json()); toast('✅ produtos.json carregado', 'ok'); return; }
+  } catch {}
+  carregarEstado(estado);
 });
 
 function carregarEstado(data) {
-  if (data.config)  Object.assign(estado.config, data.config);
-  if (data.produtos) estado.produtos = data.produtos.map(p => ({ ...p }));
+  if (data.config)              Object.assign(estado.config, data.config);
+  if (data.produtos)            estado.produtos = data.produtos.map(p=>({...p}));
   if (data.link_lista_promocoes) estado.link_lista_promocoes = data.link_lista_promocoes;
-
-  // max id
-  nextId = Math.max(0, ...estado.produtos.map(p => p.id || 0)) + 1;
-
+  nextId = Math.max(0, ...estado.produtos.map(p=>p.id||0)) + 1;
   preencherConfig();
   renderizarTodos();
   atualizarJSON();
 }
 
 /* =============================================
-   CONFIG
+   CONFIG GERAL
    ============================================= */
 function preencherConfig() {
-  const c = estado.config;
-  setVal('cfg-titulo',   c.site_titulo);
-  setVal('cfg-subtitulo',c.site_subtitulo);
-  setVal('cfg-hero',     c.hero_headline);
-  setVal('cfg-herosub',  c.hero_subheadline);
-  setVal('cfg-prova',    c.prova_social);
-  setVal('cfg-escassez', c.escassez);
-  setVal('cfg-lista',    estado.link_lista_promocoes);
+  setVal('cfg-titulo',    estado.config.site_titulo);
+  setVal('cfg-subtitulo', estado.config.site_subtitulo);
+  setVal('cfg-hero',      estado.config.hero_headline);
+  setVal('cfg-herosub',   estado.config.hero_subheadline);
+  setVal('cfg-prova',     estado.config.prova_social);
+  setVal('cfg-escassez',  estado.config.escassez);
+  setVal('cfg-lista',     estado.link_lista_promocoes);
 }
 
 function lerConfig() {
-  estado.config.site_titulo       = getVal('cfg-titulo');
-  estado.config.site_subtitulo    = getVal('cfg-subtitulo');
-  estado.config.hero_headline     = getVal('cfg-hero');
-  estado.config.hero_subheadline  = getVal('cfg-herosub');
-  estado.config.prova_social      = getVal('cfg-prova');
-  estado.config.escassez          = getVal('cfg-escassez');
-  estado.link_lista_promocoes     = getVal('cfg-lista');
+  estado.config.site_titulo      = getVal('cfg-titulo');
+  estado.config.site_subtitulo   = getVal('cfg-subtitulo');
+  estado.config.hero_headline    = getVal('cfg-hero');
+  estado.config.hero_subheadline = getVal('cfg-herosub');
+  estado.config.prova_social     = getVal('cfg-prova');
+  estado.config.escassez         = getVal('cfg-escassez');
+  estado.link_lista_promocoes    = getVal('cfg-lista');
 }
 
-// atualiza JSON ao digitar nos campos de config
 ['cfg-titulo','cfg-subtitulo','cfg-hero','cfg-herosub','cfg-prova','cfg-escassez','cfg-lista']
-  .forEach(id => {
-    document.getElementById(id)?.addEventListener('input', () => { lerConfig(); atualizarJSON(); });
-  });
+  .forEach(id => document.getElementById(id)?.addEventListener('input', ()=>{ lerConfig(); atualizarJSON(); }));
 
 /* =============================================
-   RENDERIZAR LISTA DE PRODUTOS
+   RENDER PRODUTOS
    ============================================= */
 function renderizarTodos() {
   const lista = document.getElementById('produtos-list');
   lista.innerHTML = '';
-  estado.produtos.forEach((p, i) => {
-    lista.appendChild(criarCardProduto(p, i));
-  });
+  estado.produtos.forEach((p, i) => lista.appendChild(criarCard(p, i)));
 }
 
-function criarCardProduto(p, idx) {
-  const isDestaque = !!p.destaque;
+function criarCard(p, idx) {
+  const isDest = !!p.destaque;
   const div = document.createElement('div');
-  div.className = 'prod-card' + (isDestaque ? ' is-destaque' : '');
+  div.className = 'prod-card' + (isDest?' is-destaque':'');
   div.id = 'prod-card-' + p.id;
 
-  const thumbHtml = p.imagem
-    ? `<img class="prod-thumb" src="${p.imagem}" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/><div class="prod-thumb-empty" style="display:none">📷</div>`
+  const thumb = p.imagem
+    ? `<img class="prod-thumb" src="${p.imagem}" alt=""
+         onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+       <div class="prod-thumb-empty" style="display:none">📷</div>`
     : `<div class="prod-thumb-empty">📷</div>`;
 
   div.innerHTML = `
     <div class="prod-header" onclick="toggleCard(${p.id})">
-      <div class="prod-num">${String(idx + 1).padStart(2,'0')}</div>
-      ${thumbHtml}
+      <div class="prod-num">${String(idx+1).padStart(2,'0')}</div>
+      ${thumb}
       <div class="prod-info">
-        <div class="prod-name">${p.titulo || 'Novo Produto'}</div>
+        <div class="prod-name">${p.titulo||'Novo Produto'}</div>
         <div class="prod-meta">
-          ${p.preco_de ? `<span class="prod-price-old">${p.preco_de}</span>` : ''}
-          ${p.preco    ? `<span class="prod-price">${p.preco}</span>` : ''}
-          <div class="prod-badges">
-            <span class="badge ${isDestaque ? 'badge-dest' : 'badge-sec'}">${isDestaque ? '★ Destaque' : 'Secundário'}</span>
-            ${p.badge ? `<span class="badge badge-sec">${p.badge}</span>` : ''}
-          </div>
+          ${p.preco_de?`<span class="prod-price-old">${p.preco_de}</span>`:''}
+          ${p.preco   ?`<span class="prod-price">${p.preco}</span>`:''}
+          <span class="badge ${isDest?'badge-dest':'badge-sec'}">${isDest?'★ Destaque':'Secundário'}</span>
+          ${p.badge   ?`<span class="badge badge-sec">${p.badge}</span>`:''}
         </div>
       </div>
       <div class="prod-actions">
-        <button class="btn btn-ghost btn-sm" onclick="event.stopPropagation();moverProduto(${p.id},-1)" title="Mover para cima">↑</button>
-        <button class="btn btn-ghost btn-sm" onclick="event.stopPropagation();moverProduto(${p.id},1)"  title="Mover para baixo">↓</button>
-        <button class="btn btn-danger btn-sm" onclick="event.stopPropagation();removerProduto(${p.id})">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4h6v2"/></svg>
+        <button class="btn btn-ghost btn-sm" onclick="event.stopPropagation();mover(${p.id},-1)" title="↑">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"/></svg>
+        </button>
+        <button class="btn btn-ghost btn-sm" onclick="event.stopPropagation();mover(${p.id},1)" title="↓">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <button class="btn btn-danger btn-sm" onclick="event.stopPropagation();remover(${p.id})">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/></svg>
           <span>Remover</span>
         </button>
       </div>
       <div class="chevron">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
       </div>
     </div>
-
-    <div class="prod-form" id="form-${p.id}">
-      ${formProduto(p)}
-    </div>
-  `;
+    <div class="prod-form" id="form-${p.id}">${formHTML(p)}</div>`;
 
   return div;
 }
 
-function formProduto(p) {
+function formHTML(p) {
   return `
-    <!-- INFORMAÇÕES BÁSICAS -->
-    <div class="form-section-label">Informações Básicas</div>
-    <div class="form-grid">
-      <div class="field form-full">
-        <label>Título do Produto *</label>
-        <input type="text" data-field="titulo" data-id="${p.id}"
-          value="${esc(p.titulo)}" placeholder="Nome completo do produto"
-          oninput="atualizarCampo(${p.id},'titulo',this.value)"/>
-      </div>
-      <div class="field form-full">
-        <label>Descrição</label>
-        <textarea data-field="descricao" data-id="${p.id}"
-          placeholder="Descreva os benefícios e diferenciais do produto..."
-          oninput="atualizarCampo(${p.id},'descricao',this.value)">${esc(p.descricao)}</textarea>
-      </div>
+  <!-- BÁSICO -->
+  <div class="form-sep">Informações Básicas</div>
+  <div class="form-grid">
+    <div class="field form-full">
+      <label>Título do Produto *</label>
+      <input type="text" value="${esc(p.titulo)}" placeholder="Nome completo do produto"
+        oninput="campo(${p.id},'titulo',this.value)"/>
     </div>
+    <div class="field form-full">
+      <label>Descrição</label>
+      <textarea placeholder="Benefícios e diferenciais..."
+        oninput="campo(${p.id},'descricao',this.value)">${esc(p.descricao)}</textarea>
+    </div>
+  </div>
 
-    <!-- IMAGEM -->
-    <div class="form-section-label">Imagem do Produto</div>
-    <div class="form-grid">
-      <div class="field">
-        <label>Nome do arquivo (pasta img/)</label>
-        <div class="img-field">
-          <div class="img-preview-box" id="prev-${p.id}">
-            ${p.imagem ? `<img src="${p.imagem}" alt=""/>` : '📷'}
-          </div>
-          <div class="field" style="flex:1">
-            <input type="text" data-field="imagem" data-id="${p.id}"
-              value="${esc(p.imagem)}"
-              placeholder="img/produto1.webp"
-              oninput="atualizarImagem(${p.id},this.value)"/>
-            <small style="color:var(--muted);font-size:11px;margin-top:4px">
-              Formatos: .webp .png .jpg .jpeg<br/>
-              Exemplo: img/fone-gamer.webp
-            </small>
-          </div>
+  <!-- IMAGEM -->
+  <div class="form-sep">Imagem</div>
+  <div class="form-grid">
+    <div class="field form-full">
+      <label>Arquivo na pasta img/ (ex: img/produto1.webp)</label>
+      <div class="img-row">
+        <div class="img-preview-box" id="prev-${p.id}">
+          ${p.imagem?`<img src="${p.imagem}" alt="" onerror="this.parentElement.innerHTML='📷'"/>`:'📷'}
+        </div>
+        <div class="field" style="flex:1">
+          <input type="text" value="${esc(p.imagem)}" placeholder="img/produto1.webp"
+            oninput="atualizarImg(${p.id},this.value)"/>
+          <small style="color:var(--muted);font-size:11px;margin-top:4px;display:block">
+            Formatos aceitos: .webp .png .jpg .jpeg<br/>
+            Arquivo deve estar na pasta <code style="font-family:monospace">img/</code> do repositório
+          </small>
         </div>
       </div>
     </div>
+  </div>
 
-    <!-- PREÇO -->
-    <div class="form-section-label">Preço</div>
-    <div class="form-grid form-grid-3">
-      <div class="field">
-        <label>Preço atual *</label>
-        <input type="text" data-field="preco" data-id="${p.id}"
-          value="${esc(p.preco)}" placeholder="R$93,41"
-          oninput="atualizarCampo(${p.id},'preco',this.value)"/>
-      </div>
-      <div class="field">
-        <label>Preço de (riscado)</label>
-        <input type="text" data-field="preco_de" data-id="${p.id}"
-          value="${esc(p.preco_de)}" placeholder="R$109,90"
-          oninput="atualizarCampo(${p.id},'preco_de',this.value)"/>
-      </div>
-      <div class="field">
-        <label>Badge</label>
-        <input type="text" data-field="badge" data-id="${p.id}"
-          value="${esc(p.badge)}" placeholder="⭐ Mais Vendido"
-          oninput="atualizarCampo(${p.id},'badge',this.value)"/>
-      </div>
+  <!-- PREÇO -->
+  <div class="form-sep">Preço e Badge</div>
+  <div class="form-grid form-grid-3">
+    <div class="field">
+      <label>Preço atual *</label>
+      <input type="text" value="${esc(p.preco)}" placeholder="R$93,41"
+        oninput="campo(${p.id},'preco',this.value)"/>
     </div>
+    <div class="field">
+      <label>Preço de (riscado)</label>
+      <input type="text" value="${esc(p.preco_de)}" placeholder="R$109,90"
+        oninput="campo(${p.id},'preco_de',this.value)"/>
+    </div>
+    <div class="field">
+      <label>Badge</label>
+      <input type="text" value="${esc(p.badge)}" placeholder="⭐ Mais Vendido"
+        oninput="campo(${p.id},'badge',this.value)"/>
+    </div>
+  </div>
+  <div class="form-grid">
+    <div class="field form-full">
+      <label>Microcopy (frete / entrega)</label>
+      <input type="text" value="${esc(p.microcopy)}" placeholder="Frete grátis para todo o Brasil..."
+        oninput="campo(${p.id},'microcopy',this.value)"/>
+    </div>
+  </div>
 
-    <!-- MICROCOPY -->
-    <div class="form-grid">
-      <div class="field form-full">
-        <label>Microcopy (frete, entrega)</label>
-        <input type="text" data-field="microcopy" data-id="${p.id}"
-          value="${esc(p.microcopy)}" placeholder="Frete grátis para todo o Brasil com entrega expressa"
-          oninput="atualizarCampo(${p.id},'microcopy',this.value)"/>
-      </div>
+  <!-- LINKS -->
+  <div class="form-sep">Links</div>
+  <div class="form-grid">
+    <div class="field form-full">
+      <label>Link Afiliado — botão "Ver Oferta" *</label>
+      <input type="url" value="${esc(p.link)}" placeholder="https://meli.la/..."
+        oninput="campo(${p.id},'link',this.value)"/>
     </div>
+    <div class="field">
+      <label>Link Blog / Artigo</label>
+      <input type="url" value="${esc(p.link_blog)}" placeholder="https://..."
+        oninput="campo(${p.id},'link_blog',this.value)"/>
+    </div>
+    <div class="field">
+      <label>Texto botão Blog</label>
+      <input type="text" value="${esc(p.texto_blog)}" placeholder="Saiba mais e veja as avaliações"
+        oninput="campo(${p.id},'texto_blog',this.value)"/>
+    </div>
+  </div>
 
-    <!-- LINKS -->
-    <div class="form-section-label">Links</div>
-    <div class="form-grid">
-      <div class="field form-full">
-        <label>Link Afiliado (botão "Ver Oferta") *</label>
-        <input type="url" data-field="link" data-id="${p.id}"
-          value="${esc(p.link)}" placeholder="https://meli.la/..."
-          oninput="atualizarCampo(${p.id},'link',this.value)"/>
-      </div>
-      <div class="field">
-        <label>Link Blog / Artigo</label>
-        <input type="url" data-field="link_blog" data-id="${p.id}"
-          value="${esc(p.link_blog)}" placeholder="https://..."
-          oninput="atualizarCampo(${p.id},'link_blog',this.value)"/>
-      </div>
-      <div class="field">
-        <label>Texto do botão Blog</label>
-        <input type="text" data-field="texto_blog" data-id="${p.id}"
-          value="${esc(p.texto_blog)}" placeholder="Saiba mais e veja as avaliações"
-          oninput="atualizarCampo(${p.id},'texto_blog',this.value)"/>
-      </div>
+  <!-- POSICIONAMENTO -->
+  <div class="form-sep">Posicionamento</div>
+  <div class="form-grid">
+    <div>
+      <label class="destaque-toggle">
+        <input type="checkbox" ${p.destaque?'checked':''} onchange="toggleDest(${p.id},this.checked)"/>
+        ★ Produto Destaque — aparece como #1 com layout grande
+      </label>
+      <small style="color:var(--muted);font-size:11px;display:block;margin-top:6px">
+        Apenas um produto pode ser destaque. Marcar este remove o destaque dos demais.
+      </small>
     </div>
-
-    <!-- DESTAQUE -->
-    <div class="form-section-label">Posicionamento</div>
-    <div class="form-grid">
-      <div>
-        <label class="destaque-toggle">
-          <input type="checkbox" ${p.destaque ? 'checked' : ''}
-            onchange="toggleDestaque(${p.id},this.checked)"/>
-          ★ Produto em Destaque (posição #1, layout grande)
-        </label>
-        <small style="color:var(--muted);font-size:11px;display:block;margin-top:6px;padding-left:2px">
-          Apenas um produto pode ser destaque. Ao marcar este, o anterior perde o destaque.
-        </small>
-      </div>
-    </div>
-    <div style="height:4px"></div>
-  `;
+  </div>
+  <div style="height:6px"></div>`;
 }
 
 /* =============================================
-   AÇÕES DOS CARDS
+   AÇÕES DE CARD
    ============================================= */
-function toggleCard(id) {
-  const card = document.getElementById('prod-card-' + id);
-  card?.classList.toggle('open');
-}
+function toggleCard(id) { document.getElementById('prod-card-'+id)?.classList.toggle('open'); }
 
-function atualizarCampo(id, campo, valor) {
-  const p = estado.produtos.find(p => p.id === id);
-  if (!p) return;
-  p[campo] = valor;
-  // atualiza header em tempo real
-  const card = document.getElementById('prod-card-' + id);
-  if (card) {
-    if (campo === 'titulo') card.querySelector('.prod-name').textContent = valor || 'Novo Produto';
-    if (campo === 'preco') {
-      let el = card.querySelector('.prod-price');
-      if (el) el.textContent = valor;
-    }
-    if (campo === 'preco_de') {
-      let el = card.querySelector('.prod-price-old');
-      if (el) el.textContent = valor;
-    }
+function campo(id, key, val) {
+  const p = estado.produtos.find(p=>p.id===id); if(!p) return;
+  p[key] = val;
+  const card = document.getElementById('prod-card-'+id);
+  if(card) {
+    if(key==='titulo')   card.querySelector('.prod-name').textContent = val||'Novo Produto';
+    if(key==='preco')    { const el=card.querySelector('.prod-price');    if(el) el.textContent=val; }
+    if(key==='preco_de') { const el=card.querySelector('.prod-price-old'); if(el) el.textContent=val; }
   }
   atualizarJSON();
 }
 
-function atualizarImagem(id, valor) {
-  atualizarCampo(id, 'imagem', valor);
-  // atualiza preview
-  const prev = document.getElementById('prev-' + id);
-  if (prev) {
-    prev.innerHTML = valor
-      ? `<img src="${valor}" alt="" onerror="this.parentElement.innerHTML='📷'"/>`
-      : '📷';
-  }
-  // atualiza thumb no header
-  const card = document.getElementById('prod-card-' + id);
-  const thumb = card?.querySelector('.prod-thumb');
-  if (thumb) thumb.src = valor;
+function atualizarImg(id, val) {
+  campo(id,'imagem',val);
+  const prev = document.getElementById('prev-'+id);
+  if(prev) prev.innerHTML = val
+    ? `<img src="${val}" alt="" onerror="this.parentElement.innerHTML='📷'"/>`
+    : '📷';
+  const thumb = document.querySelector('#prod-card-'+id+' .prod-thumb');
+  if(thumb) thumb.src = val;
 }
 
-function toggleDestaque(id, checked) {
-  if (checked) {
-    // remove destaque de todos
-    estado.produtos.forEach(p => { p.destaque = false; });
-  }
-  const p = estado.produtos.find(p => p.id === id);
-  if (p) p.destaque = checked;
-  // re-renderiza para atualizar badges e classes
+function toggleDest(id, checked) {
+  if(checked) estado.produtos.forEach(p=>{ p.destaque=false; });
+  const p = estado.produtos.find(p=>p.id===id);
+  if(p) p.destaque = checked;
   renderizarTodos();
-  // reabre o card que estava aberto
-  const card = document.getElementById('prod-card-' + id);
-  card?.classList.add('open');
+  document.getElementById('prod-card-'+id)?.classList.add('open');
   atualizarJSON();
 }
 
-function moverProduto(id, dir) {
-  const idx = estado.produtos.findIndex(p => p.id === id);
-  const novo = idx + dir;
-  if (novo < 0 || novo >= estado.produtos.length) return;
-  [estado.produtos[idx], estado.produtos[novo]] = [estado.produtos[novo], estado.produtos[idx]];
-  renderizarTodos();
-  atualizarJSON();
+function mover(id, dir) {
+  const i = estado.produtos.findIndex(p=>p.id===id);
+  const j = i+dir;
+  if(j<0||j>=estado.produtos.length) return;
+  [estado.produtos[i],estado.produtos[j]] = [estado.produtos[j],estado.produtos[i]];
+  renderizarTodos(); atualizarJSON();
 }
 
-function removerProduto(id) {
-  if (!confirm('Remover este produto?')) return;
-  estado.produtos = estado.produtos.filter(p => p.id !== id);
-  renderizarTodos();
-  atualizarJSON();
-  toast('🗑 Produto removido', 'ok');
+function remover(id) {
+  if(!confirm('Remover este produto?')) return;
+  estado.produtos = estado.produtos.filter(p=>p.id!==id);
+  renderizarTodos(); atualizarJSON();
+  toast('🗑 Produto removido','ok');
 }
 
 function adicionarProduto() {
   const novo = {
-    id:         nextId++,
-    titulo:     '',
-    descricao:  '',
-    preco:      '',
-    preco_de:   '',
-    imagem:     '',
-    link:       '',
-    badge:      '',
-    destaque:   false,
-    microcopy:  '',
-    link_blog:  '',
-    texto_blog: 'Saiba mais e veja as avaliações'
+    id:nextId++, titulo:'', descricao:'', preco:'', preco_de:'',
+    imagem:'', link:'', badge:'', destaque:false,
+    microcopy:'', link_blog:'', texto_blog:'Saiba mais e veja as avaliações'
   };
   estado.produtos.push(novo);
-  renderizarTodos();
-  atualizarJSON();
-  // abre o novo card
-  const card = document.getElementById('prod-card-' + novo.id);
+  renderizarTodos(); atualizarJSON();
+  const card = document.getElementById('prod-card-'+novo.id);
   card?.classList.add('open');
-  card?.scrollIntoView({ behavior: 'smooth', block: 'center' });
-  toast('➕ Produto adicionado', 'ok');
+  card?.scrollIntoView({behavior:'smooth',block:'center'});
+  toast('➕ Produto adicionado','ok');
 }
 
 /* =============================================
@@ -735,77 +694,146 @@ function adicionarProduto() {
 function gerarJSON() {
   lerConfig();
   return JSON.stringify({
-    config: { ...estado.config },
-    produtos: estado.produtos.map(p => ({ ...p })),
-    link_lista_promocoes: estado.link_lista_promocoes
+    config:{...estado.config},
+    produtos:estado.produtos.map(p=>({...p})),
+    link_lista_promocoes:estado.link_lista_promocoes
   }, null, 2);
 }
-
-function atualizarJSON() {
-  document.getElementById('json-out').textContent = gerarJSON();
-}
+function atualizarJSON() { document.getElementById('json-out').textContent = gerarJSON(); }
 
 function salvarJSON() {
-  const json  = gerarJSON();
-  const blob  = new Blob([json], { type: 'application/json' });
-  const url   = URL.createObjectURL(blob);
-  const a     = document.createElement('a');
-  a.href      = url;
-  a.download  = 'produtos.json';
-  a.click();
+  const blob = new Blob([gerarJSON()],{type:'application/json'});
+  const url  = URL.createObjectURL(blob);
+  const a    = document.createElement('a');
+  a.href=url; a.download='produtos.json'; a.click();
   URL.revokeObjectURL(url);
-  toast('💾 produtos.json baixado! Suba para o GitHub.', 'ok');
+  toast('💾 produtos.json baixado!','ok');
 }
 
 function copiarJSON() {
-  navigator.clipboard.writeText(gerarJSON()).then(() => {
-    toast('📋 JSON copiado!', 'ok');
-  }).catch(() => toast('Erro ao copiar', 'err'));
+  navigator.clipboard.writeText(gerarJSON())
+    .then(()=>toast('📋 Copiado!','ok'))
+    .catch(()=>toast('Erro ao copiar','err'));
 }
 
-function importarJSON() {
-  document.getElementById('file-import').click();
-}
+function importarJSON() { document.getElementById('file-import').click(); }
 
 function lerArquivo(e) {
-  const file = e.target.files[0];
-  if (!file) return;
-  const reader = new FileReader();
-  reader.onload = ev => {
-    try {
-      const data = JSON.parse(ev.target.result);
-      carregarEstado(data);
-      toast('✅ JSON importado com sucesso!', 'ok');
-    } catch {
-      toast('❌ JSON inválido', 'err');
-    }
+  const file=e.target.files[0]; if(!file) return;
+  const r=new FileReader();
+  r.onload=ev=>{ try{ carregarEstado(JSON.parse(ev.target.result)); toast('✅ Importado!','ok'); }
+                 catch{ toast('❌ JSON inválido','err'); } };
+  r.readAsText(file); e.target.value='';
+}
+
+/* =============================================
+   GITHUB CONFIG — só proxy URL + owner/repo
+   Token fica NO Worker, nunca aqui
+   ============================================= */
+function carregarCfgGH() {
+  try{ return JSON.parse(localStorage.getItem(GH_KEY))||{}; }catch{ return {}; }
+}
+
+function atualizarStatusGH() {
+  const cfg=carregarCfgGH();
+  const el=document.getElementById('gh-status');
+  const txt=document.getElementById('gh-status-txt');
+  if(cfg.proxy && cfg.owner && cfg.repo) {
+    el.classList.add('ok');
+    txt.textContent=cfg.owner+'/'+cfg.repo;
+  } else {
+    el.classList.remove('ok');
+    txt.textContent='Configurar GitHub';
+  }
+}
+
+function abrirModalGH() {
+  const cfg=carregarCfgGH();
+  setVal('gh-proxy',  cfg.proxy  ||'');
+  setVal('gh-owner',  cfg.owner  ||'');
+  setVal('gh-repo',   cfg.repo   ||'');
+  setVal('gh-branch', cfg.branch ||'main');
+  setVal('gh-path',   cfg.path   ||'produtos.json');
+  document.getElementById('modal-gh').classList.add('open');
+}
+
+function fecharModalGH() { document.getElementById('modal-gh').classList.remove('open'); }
+
+function salvarConfigGH() {
+  const cfg={
+    proxy:  getVal('gh-proxy').replace(/\/$/,''),
+    owner:  getVal('gh-owner'),
+    repo:   getVal('gh-repo'),
+    branch: getVal('gh-branch')||'main',
+    path:   getVal('gh-path')  ||'produtos.json',
   };
-  reader.readAsText(file);
-  e.target.value = '';
+  if(!cfg.proxy||!cfg.owner||!cfg.repo){
+    toast('⚠️ Preencha URL do Worker, usuário e repositório','err'); return;
+  }
+  localStorage.setItem(GH_KEY, JSON.stringify(cfg));
+  fecharModalGH();
+  atualizarStatusGH();
+  toast('✅ Configuração salva!','ok');
+}
+
+/* =============================================
+   PUBLICAR VIA PROXY (token seguro no Worker)
+   ============================================= */
+async function publicarGitHub() {
+  const cfg=carregarCfgGH();
+  if(!cfg.proxy||!cfg.owner||!cfg.repo){
+    toast('⚠️ Configure o GitHub primeiro','err'); abrirModalGH(); return;
+  }
+
+  const btn=document.getElementById('btn-push');
+  btn.disabled=true;
+  btn.innerHTML='<span class="spin">↻</span> <span>Publicando...</span>';
+
+  const json   = gerarJSON();
+  // btoa com suporte a UTF-8
+  const base64 = btoa(unescape(encodeURIComponent(json)));
+
+  try {
+    const resp = await fetch(cfg.proxy, {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({
+        owner:   cfg.owner,
+        repo:    cfg.repo,
+        branch:  cfg.branch||'main',
+        path:    cfg.path||'produtos.json',
+        content: base64,
+        message: `chore: atualiza produtos.json via Paçoca [${new Date().toLocaleString('pt-BR')}]`
+      })
+    });
+
+    const data = await resp.json().catch(()=>({}));
+
+    if(!resp.ok) throw new Error(data.error||'Erro '+resp.status);
+
+    toast('🚀 Publicado! Site atualiza em ~30s','ok');
+
+  } catch(e) {
+    console.error(e);
+    toast('❌ '+e.message,'err');
+  } finally {
+    btn.disabled=false;
+    btn.innerHTML=`<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 8 12 16"/><polyline points="8 12 12 8 16 12"/></svg> <span>Publicar no GitHub</span>`;
+  }
 }
 
 /* =============================================
    UTILS
    ============================================= */
-function esc(v) {
-  return (v || '').replace(/"/g, '&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-}
+function esc(v){ return (v||'').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+function setVal(id,v){ const el=document.getElementById(id); if(el) el.value=v||''; }
+function getVal(id){ return document.getElementById(id)?.value||''; }
 
-function setVal(id, val) {
-  const el = document.getElementById(id);
-  if (el) el.value = val || '';
-}
-function getVal(id) {
-  return document.getElementById(id)?.value || '';
-}
-
-let toastTimer;
-function toast(msg, type = 'ok') {
-  const el = document.getElementById('toast');
-  el.textContent = msg;
-  el.className   = 'toast show ' + type;
-  clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => { el.classList.remove('show'); }, 3200);
+let _tt;
+function toast(msg,type='ok'){
+  const el=document.getElementById('toast');
+  el.textContent=msg; el.className='toast show '+type;
+  clearTimeout(_tt); _tt=setTimeout(()=>el.classList.remove('show'),3400);
 }
 </script>
 </body>
