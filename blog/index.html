@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Blog de Ofertas | Análises e Avaliações</title>
+  <meta name="description" content="Avaliações detalhadas dos melhores produtos do Mercado Livre. Descubra qual vale a pena comprar."/>
+  <meta name="robots" content="index,follow"/>
+  <link rel="canonical" href="https://promo.devpbs.com.br/blog/"/>
+  <meta property="og:title" content="Blog de Ofertas | Análises e Avaliações"/>
+  <meta property="og:type" content="website"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            bg: '#0c0c10', surface: '#14141a', surface2: '#1c1c25',
+            border: '#2a2a38', orange: '#ff5722', orange2: '#ff8a50',
+            green: '#00e676', muted: '#7070a0', accent: '#ffc107'
+          },
+          fontFamily: {
+            title: ['Syne', 'sans-serif'],
+            body: ['Geist', 'sans-serif'],
+            mono: ['Geist Mono', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { background: #0c0c10; color: #f0eeff; font-family: 'Geist', sans-serif; }
+    .grad-text { background: linear-gradient(120deg, #ff5722, #ff8a50); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .card-hover { transition: all 0.22s cubic-bezier(0.4,0,0.2,1); }
+    .card-hover:hover { transform: translateY(-4px); border-color: rgba(255,87,34,0.5); box-shadow: 0 12px 40px rgba(255,87,34,0.12); }
+    .escassez-bar { background: linear-gradient(90deg,#c0392b,#ff5722,#c0392b); background-size: 200%; animation: esc 4s linear infinite; }
+    @keyframes esc { to { background-position: 200%; } }
+    .btn-cta { background: #ff5722; transition: all 0.18s; }
+    .btn-cta:hover { background: #e64a19; transform: translateY(-1px); }
+    .skeleton { background: linear-gradient(90deg, #1c1c25 25%, #2a2a38 50%, #1c1c25 75%); background-size: 200% 100%; animation: shimmer 1.4s infinite; }
+    @keyframes shimmer { to { background-position: -200% 0; } }
+    .tag { background: rgba(255,87,34,0.12); border: 1px solid rgba(255,87,34,0.25); color: #ff8a50; }
+    input[type=search]:focus { outline: none; border-color: #ff5722; }
+    .fade-in { animation: fadeIn 0.4s ease forwards; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+  </style>
+</head>
+<body class="min-h-screen overflow-x-hidden">
+
+  <!-- ESCASSEZ BAR -->
+  <div class="escassez-bar text-white text-center text-xs font-bold py-2 px-4 tracking-wide">
+    🔥 Avaliações honestas — sem patrocínio escondido
+  </div>
+
+  <!-- HEADER -->
+  <header class="sticky top-0 z-50 border-b border-border" style="background:rgba(12,12,16,.96);backdrop-filter:blur(16px)">
+    <div class="max-w-5xl mx-auto px-5 flex items-center justify-between h-14 gap-4">
+      <a href="/" class="font-title text-lg font-black grad-text flex items-center gap-2">
+        🛍️ <span>Pbs Devop<small class="text-muted font-body font-normal text-xs ml-1">/blog</small></span>
+      </a>
+      <nav class="flex items-center gap-3">
+        <a href="/" class="text-muted hover:text-white text-sm transition-colors">Ofertas</a>
+        <a href="/blog/" class="text-orange text-sm font-semibold">Blog</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="relative overflow-hidden py-14 px-5 text-center">
+    <div class="absolute inset-0 pointer-events-none" style="background:radial-gradient(ellipse 60% 40% at 50% 0%,rgba(255,87,34,.08),transparent)"></div>
+    <div class="max-w-2xl mx-auto relative">
+      <div class="inline-block tag rounded-full px-4 py-1 text-xs font-bold tracking-widest uppercase mb-5">Análises e Avaliações</div>
+      <h1 class="font-title text-4xl md:text-5xl font-black leading-tight mb-4">
+        Vale a pena <span class="grad-text">comprar?</span>
+      </h1>
+      <p class="text-muted text-base md:text-lg mb-8 leading-relaxed">
+        Reviews detalhados com fotos reais, avaliações de clientes e análise honesta de custo-benefício.
+      </p>
+      <!-- SEARCH -->
+      <div class="relative max-w-md mx-auto">
+        <svg class="absolute left-4 top-1/2 -translate-y-1/2 text-muted w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+          <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+        </svg>
+        <input id="busca" type="search" placeholder="Buscar review..." autocomplete="off" spellcheck="false"
+          class="w-full bg-surface border border-border rounded-full py-3 pl-11 pr-5 text-sm text-white placeholder-muted transition-colors"
+          style="border-color:#2a2a38"/>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS BAR -->
+  <div class="border-y border-border py-3">
+    <div class="max-w-5xl mx-auto px-5 flex items-center justify-center gap-8 text-xs text-muted flex-wrap">
+      <span id="stat-total" class="flex items-center gap-1.5">
+        <span class="w-2 h-2 rounded-full bg-green inline-block"></span>
+        <span>Carregando...</span>
+      </span>
+      <span>📸 Fotos reais de clientes</span>
+      <span>🔍 Análise honesta</span>
+    </div>
+  </div>
+
+  <!-- MAIN -->
+  <main class="max-w-5xl mx-auto px-5 py-10">
+
+    <!-- SKELETON -->
+    <div id="skeletons" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="skeleton rounded-2xl h-72"></div>
+      <div class="skeleton rounded-2xl h-72"></div>
+      <div class="skeleton rounded-2xl h-72"></div>
+    </div>
+
+    <!-- SEM RESULTADOS -->
+    <div id="sem-res" class="hidden text-center py-20 text-muted">
+      <div class="text-5xl mb-4">🔍</div>
+      <p class="text-lg font-semibold mb-1">Nenhum post encontrado</p>
+      <p class="text-sm">Tente outra palavra-chave</p>
+    </div>
+
+    <!-- POSTS GRID -->
+    <div id="grid" class="hidden grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-border mt-10 py-8 px-5 text-center text-xs text-muted">
+    <p>Este blog contém links de afiliado. Ao comprar pelos nossos links, podemos receber uma comissão sem custo adicional para você.</p>
+    <p class="mt-2">© 2025 Pbs Devop — <a href="/blog/admin.html" class="hover:text-orange transition-colors opacity-30">Admin</a></p>
+  </footer>
+
+<script>
+let todosOsPosts = [];
+
+async function init() {
+  try {
+    const r = await fetch('posts.json');
+    const data = await r.json();
+    todosOsPosts = (data.posts || []).filter(p => !p.rascunho).sort((a,b) => new Date(b.data) - new Date(a.data));
+    document.getElementById('skeletons').remove();
+    document.getElementById('grid').classList.remove('hidden');
+    document.getElementById('stat-total').innerHTML =
+      `<span class="w-2 h-2 rounded-full bg-green inline-block"></span><span>${todosOsPosts.length} review${todosOsPosts.length !== 1 ? 's' : ''} publicado${todosOsPosts.length !== 1 ? 's' : ''}</span>`;
+    renderizar(todosOsPosts);
+  } catch(e) {
+    document.getElementById('skeletons').remove();
+    document.getElementById('sem-res').classList.remove('hidden');
+    document.getElementById('stat-total').innerHTML = '<span>Erro ao carregar posts</span>';
+  }
+}
+
+function renderizar(posts) {
+  const grid = document.getElementById('grid');
+  const sem  = document.getElementById('sem-res');
+  if (!posts.length) { grid.innerHTML=''; sem.classList.remove('hidden'); return; }
+  sem.classList.add('hidden');
+
+  grid.innerHTML = posts.map((p, i) => {
+    const data = p.data ? new Date(p.data).toLocaleDateString('pt-BR',{day:'2-digit',month:'short',year:'numeric'}) : '';
+    const img  = p.imagem_principal || 'https://placehold.co/400x280/14141a/7070a0?text=Sem+Foto';
+    return `
+    <article class="card-hover bg-surface border border-border rounded-2xl overflow-hidden fade-in" style="animation-delay:${i*60}ms">
+      <a href="posts/${p.slug}.html" class="block">
+        <div class="relative overflow-hidden" style="padding-bottom:62%">
+          <img src="${img}" alt="${p.titulo}" loading="lazy"
+            class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+            onerror="this.src='https://placehold.co/400x280/14141a/7070a0?text=Sem+Foto'"/>
+          ${p.badge ? `<span class="absolute top-3 left-3 tag rounded-full px-3 py-1 text-xs font-bold">${p.badge}</span>` : ''}
+        </div>
+      </a>
+      <div class="p-5">
+        ${data ? `<p class="text-muted text-xs font-mono mb-2">${data}</p>` : ''}
+        <h2 class="font-title font-bold text-base leading-snug mb-2 line-clamp-2">
+          <a href="posts/${p.slug}.html" class="hover:text-orange transition-colors">${p.titulo}</a>
+        </h2>
+        <p class="text-muted text-sm leading-relaxed line-clamp-3 mb-4">${p.resumo || ''}</p>
+        <div class="flex items-center justify-between gap-3">
+          <a href="posts/${p.slug}.html"
+            class="btn-cta text-white text-sm font-bold px-5 py-2.5 rounded-full flex items-center gap-2">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            Ler Review
+          </a>
+          ${p.link_compra ? `
+          <a href="${p.link_compra}" target="_blank" rel="noopener noreferrer"
+            class="text-xs text-muted hover:text-orange transition-colors flex items-center gap-1">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            Ver Oferta
+          </a>` : ''}
+        </div>
+      </div>
+    </article>`;
+  }).join('');
+}
+
+let debounce;
+document.getElementById('busca').addEventListener('input', e => {
+  clearTimeout(debounce);
+  debounce = setTimeout(() => {
+    const q = e.target.value.trim().toLowerCase();
+    if (!q) { renderizar(todosOsPosts); return; }
+    renderizar(todosOsPosts.filter(p =>
+      (p.titulo||'').toLowerCase().includes(q) ||
+      (p.resumo||'').toLowerCase().includes(q)
+    ));
+  }, 220);
+});
+
+init();
+</script>
+</body>
+</html>
