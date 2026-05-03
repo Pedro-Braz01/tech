@@ -622,6 +622,7 @@ async function salvarEPublicar() {
     await pushArquivo(cfg, `${cfg.base||'blog'}/posts/${post.slug}.html`, base64Html, `post: ${post.slug}`, true);
 
 
+
     toast('🚀 Publicado! GitHub Pages atualiza em ~30s','ok');
     setTimeout(() => limparForm(), 1500);
 
