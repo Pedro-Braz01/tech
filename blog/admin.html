@@ -619,7 +619,8 @@ async function salvarEPublicar() {
     // 3. Gerar e push HTML do post
     const htmlPost = await gerarHTMLPost(post);
     const base64Html = btoa(unescape(encodeURIComponent(htmlPost)));
-    await pushArquivo(cfg, `${cfg.base||'blog'}/posts/${post.slug}.html`, base64Html, `post: ${post.slug}`);
+    await pushArquivo(cfg, `${cfg.base||'blog'}/posts/${post.slug}.html`, base64Html, `post: ${post.slug}`, true);
+
 
     toast('🚀 Publicado! GitHub Pages atualiza em ~30s','ok');
     setTimeout(() => limparForm(), 1500);
