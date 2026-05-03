@@ -49,6 +49,20 @@
       "microcopy": "Parcelamento sem juros",
       "link_blog": "LINK_DO_SEU_BLOG_PRODUTO_3",
       "texto_blog": "Saiba mais e veja as avaliações"
+    },
+    {
+      "id": 4,
+      "titulo": "4",
+      "descricao": "",
+      "preco": "",
+      "preco_de": "",
+      "imagem": "",
+      "link": "",
+      "badge": "",
+      "destaque": false,
+      "microcopy": "",
+      "link_blog": "",
+      "texto_blog": "Saiba mais e veja as avaliações"
     }
   ],
   "link_lista_promocoes": "https://meli.la/2RCDXRs"
