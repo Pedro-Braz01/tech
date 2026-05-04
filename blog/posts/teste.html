@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>teste | Blog Pbs Devop</title>
+  <meta name="description" content=""/>
+  <meta name="robots" content="index,follow"/>
+  <link rel="canonical" href="https://promo.devpbs.com.br/blog/posts/teste.html"/>
+  <meta property="og:title" content="teste"/>
+  <meta property="og:description" content=""/>
+  <meta property="og:image" content=""/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2026-05-04T23:38:45.156Z"/>
+  <!-- Schema -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org","@type":"BlogPosting",
+    "headline":"teste","description":"",
+    "image":"","datePublished":"2026-05-04T23:38:45.156Z",
+    "author":{"@type":"Organization","name":"Pbs Devop"}
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Geist:wght@400;500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            bg:'#0c0c10',surface:'#14141a',surface2:'#1c1c25',
+            border:'#2a2a38',orange:'#ff5722',orange2:'#ff8a50',
+            green:'#00e676',muted:'#7070a0'
+          },
+          fontFamily:{
+            title:['Syne','sans-serif'],
+            body:['Geist','sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { background:#0c0c10; color:#f0eeff; font-family:'Geist',sans-serif; }
+    .grad-text { background:linear-gradient(120deg,#ff5722,#ff8a50);-webkit-background-clip:text;-webkit-text-fill-color:transparent; }
+    /* prose styles */
+    .prose h2 { font-family:'Syne',sans-serif;font-size:1.4rem;font-weight:800;margin:2rem 0 0.75rem;color:#f0eeff;border-left:3px solid #ff5722;padding-left:0.75rem; }
+    .prose h3 { font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:700;margin:1.5rem 0 0.5rem;color:#f0eeff; }
+    .prose p  { font-size:1rem;line-height:1.75;color:rgba(240,238,255,.82);margin-bottom:1rem; }
+    .prose ul { list-style:none;padding:0;margin:1rem 0; }
+    .prose ul li { padding:0.45rem 0 0.45rem 1.5rem;position:relative;color:rgba(240,238,255,.82);font-size:.95rem; }
+    .prose ul li::before { content:'→';position:absolute;left:0;color:#ff5722;font-weight:700; }
+    .prose ol { padding-left:1.5rem;margin:1rem 0; }
+    .prose ol li { padding:0.3rem 0;color:rgba(240,238,255,.82);font-size:.95rem; }
+    .prose strong { color:#f0eeff;font-weight:700; }
+    .prose blockquote { border-left:3px solid #ff5722;margin:1.5rem 0;padding:0.75rem 1rem;background:rgba(255,87,34,.06);border-radius:0 8px 8px 0;color:#ff8a50;font-style:italic; }
+    /* swiper */
+    .swiper { border-radius:16px;overflow:hidden; }
+    .swiper-slide img { width:100%;height:100%;object-fit:cover; }
+    .swiper-pagination-bullet { background:#7070a0; }
+    .swiper-pagination-bullet-active { background:#ff5722; }
+    .swiper-button-next,.swiper-button-prev { color:#ff5722; }
+    /* sticky CTA */
+    .sticky-cta { position:fixed;bottom:0;left:0;right:0;z-index:90;background:rgba(12,12,16,.97);border-top:1px solid #2a2a38;backdrop-filter:blur(12px);transform:translateY(100%);transition:transform .3s cubic-bezier(.4,0,.2,1); }
+    .sticky-cta.show { transform:translateY(0); }
+    .btn-buy { background:#ff5722;transition:all .18s; }
+    .btn-buy:hover { background:#e64a19;transform:translateY(-1px); }
+    .pros-box { background:rgba(0,230,118,.06);border:1px solid rgba(0,230,118,.2);border-radius:12px; }
+    .cons-box { background:rgba(255,68,68,.06);border:1px solid rgba(255,68,68,.2);border-radius:12px; }
+    .rating-bar-fill { background:linear-gradient(90deg,#ff5722,#ff8a50);border-radius:99px;height:6px;transition:width 1s ease; }
+  </style>
+</head>
+<body class="min-h-screen pb-24">
+
+  <!-- HEADER -->
+  <header class="sticky top-0 z-50 border-b border-border" style="background:rgba(12,12,16,.96);backdrop-filter:blur(16px)">
+    <div class="max-w-3xl mx-auto px-5 flex items-center justify-between h-14 gap-4">
+      <a href="/blog/" class="flex items-center gap-2 text-muted hover:text-white transition-colors text-sm">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+        Voltar ao Blog
+      </a>
+      <a href="/" class="font-title font-black grad-text text-base">Pbs Devop</a>
+    </div>
+  </header>
+
+  <!-- BREADCRUMB -->
+  <div class="max-w-3xl mx-auto px-5 py-3">
+    <nav class="text-xs text-muted flex items-center gap-1.5">
+      <a href="/" class="hover:text-orange transition-colors">Ofertas</a>
+      <span>/</span>
+      <a href="/blog/" class="hover:text-orange transition-colors">Blog</a>
+      <span>/</span>
+      <span class="text-white/60 truncate max-w-xs">teste</span>
+    </nav>
+  </div>
+
+  <!-- MAIN -->
+  <main class="max-w-3xl mx-auto px-5">
+
+    <!-- BADGE + META -->
+    <div class="flex items-center gap-3 mb-4 flex-wrap">
+      
+      <span class="text-muted text-xs font-mono">04 de maio de 2026</span>
+    </div>
+
+    <!-- H1 -->
+    <h1 class="font-title text-3xl md:text-4xl font-black leading-tight mb-4">teste</h1>
+
+    <!-- RESUMO LEAD -->
+    <p class="text-muted text-lg leading-relaxed mb-8 border-l-2 border-orange pl-4"></p>
+
+    <!-- CARROSSEL PRINCIPAL -->
+    
+
+    <!-- RATING -->
+    <div class="bg-surface border border-border rounded-2xl p-6 mb-8">
+      <div class="flex items-center justify-between mb-5">
+        <div>
+          <p class="text-muted text-xs font-bold uppercase tracking-widest mb-1">Nossa Avaliação</p>
+          <div class="flex items-baseline gap-2">
+            <span class="font-title text-5xl font-black grad-text">9</span>
+            <span class="text-muted text-lg">/10</span>
+          </div>
+        </div>
+        <div class="text-5xl">🔥</div>
+      </div>
+      <div class="space-y-3">
+        
+    <div>
+      <div style="display:flex;justify-content:space-between;margin-bottom:4px">
+        <span style="font-size:12px;font-weight:600">Custo-benefício</span>
+        <span style="font-size:12px;color:#ff8a50;font-family:'Geist Mono',monospace">9/10</span>
+      </div>
+      <div style="background:#2a2a38;border-radius:99px;height:6px">
+        <div class="rating-bar-fill" data-width="90%" style="width:0"></div>
+      </div>
+    </div>
+    <div>
+      <div style="display:flex;justify-content:space-between;margin-bottom:4px">
+        <span style="font-size:12px;font-weight:600">Qualidade do Produto</span>
+        <span style="font-size:12px;color:#ff8a50;font-family:'Geist Mono',monospace">8/10</span>
+      </div>
+      <div style="background:#2a2a38;border-radius:99px;height:6px">
+        <div class="rating-bar-fill" data-width="80%" style="width:0"></div>
+      </div>
+    </div>
+    <div>
+      <div style="display:flex;justify-content:space-between;margin-bottom:4px">
+        <span style="font-size:12px;font-weight:600">Entrega / Frete</span>
+        <span style="font-size:12px;color:#ff8a50;font-family:'Geist Mono',monospace">9/10</span>
+      </div>
+      <div style="background:#2a2a38;border-radius:99px;height:6px">
+        <div class="rating-bar-fill" data-width="90%" style="width:0"></div>
+      </div>
+    </div>
+      </div>
+    </div>
+
+    <!-- PROS / CONS -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+      <div class="pros-box p-5">
+        <h3 class="font-title font-bold text-green mb-3 flex items-center gap-2">
+          <span>✅</span> Pontos Positivos
+        </h3>
+        <ul class="space-y-2 text-sm text-white/80"></ul>
+      </div>
+      <div class="cons-box p-5">
+        <h3 class="font-title font-bold text-red-400 mb-3 flex items-center gap-2">
+          <span>⚠️</span> Pontos de Atenção
+        </h3>
+        <ul class="space-y-2 text-sm text-white/80"></ul>
+      </div>
+    </div>
+
+    <!-- CONTEÚDO PRINCIPAL -->
+    <div class="prose mb-10">
+      
+    </div>
+
+    <!-- CARROSSEL DE AVALIAÇÕES -->
+    
+
+    <!-- CTA BOX -->
+    <div class="bg-surface border-2 border-orange rounded-2xl p-6 mb-10 text-center relative overflow-hidden">
+      <div class="absolute inset-0 pointer-events-none" style="background:radial-gradient(ellipse 70% 60% at 50% 100%,rgba(255,87,34,.1),transparent)"></div>
+      <p class="text-muted text-sm mb-2">Oferta com frete grátis no Mercado Livre</p>
+      <p class="font-title text-3xl font-black text-green mb-1"></p>
+      
+      <a href="https://meli.la/1soAQAh" target="_blank" rel="noopener noreferrer"
+        class="btn-buy inline-flex items-center justify-center gap-2 text-white font-title font-black text-lg px-8 py-4 rounded-full w-full max-w-sm mx-auto">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        Ver Oferta no Mercado Livre
+      </a>
+      <p class="text-muted text-xs mt-3">🔒 Compra 100% segura via Mercado Pago</p>
+    </div>
+
+  </main>
+
+  <!-- STICKY CTA MOBILE -->
+  <div id="sticky-cta" class="sticky-cta px-5 py-3">
+    <div class="max-w-sm mx-auto flex items-center gap-3">
+      <div class="flex-1 min-w-0">
+        <p class="text-xs text-muted truncate">teste</p>
+        <p class="font-title font-black text-green text-lg leading-none"></p>
+      </div>
+      <a href="https://meli.la/1soAQAh" target="_blank" rel="noopener noreferrer"
+        class="btn-buy text-white font-bold text-sm px-5 py-3 rounded-full flex items-center gap-2 flex-shrink-0">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        Ver Oferta
+      </a>
+    </div>
+  </div>
+
+  <footer class="border-t border-border mt-6 py-6 px-5 text-center text-xs text-muted">
+    <p>Este post contém links de afiliado. Comissão sem custo adicional para você.</p>
+    <p class="mt-1">© 2025 Pbs Devop</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script>
+    // Main product swiper
+    if (document.querySelector('.main-swiper')) {
+      new Swiper('.main-swiper', {
+        loop: true, pagination: { el: '.main-swiper .swiper-pagination', clickable: true },
+        navigation: { nextEl: '.main-swiper .swiper-button-next', prevEl: '.main-swiper .swiper-button-prev' },
+        autoplay: { delay: 4000, disableOnInteraction: false }
+      });
+    }
+    // Reviews swiper
+    if (document.querySelector('.reviews-swiper')) {
+      new Swiper('.reviews-swiper', {
+        slidesPerView: 1.1, spaceBetween: 14, centeredSlides: false,
+        pagination: { el: '.reviews-swiper .swiper-pagination', clickable: true },
+        breakpoints: { 640: { slidesPerView: 1.6 } }
+      });
+    }
+    // Sticky CTA
+    const stickyCta = document.getElementById('sticky-cta');
+    window.addEventListener('scroll', () => {
+      stickyCta.classList.toggle('show', window.scrollY > 400);
+    }, { passive: true });
+    // Rating bars animate on view
+    const bars = document.querySelectorAll('.rating-bar-fill');
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.style.width = e.target.dataset.width; obs.unobserve(e.target); }
+      });
+    });
+    bars.forEach(b => { b.style.width = '0'; obs.observe(b); });
+  </script>
+</body>
+</html>
