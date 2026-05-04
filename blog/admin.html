@@ -48,18 +48,14 @@
     .toast.err{border-color:rgba(255,68,68,.4);color:#ff4444}
     .spin{display:inline-block;animation:spin .7s linear infinite}
     @keyframes spin{to{transform:rotate(360deg)}}
-    /* Prose toolbar */
     .toolbar-btn{background:#1c1c25;border:1px solid #2a2a38;color:#7070a0;border-radius:6px;padding:5px 10px;font-size:11px;font-weight:700;cursor:pointer;transition:all .15s}
     .toolbar-btn:hover{border-color:#ff5722;color:#ff5722}
-    /* Image grid */
     .img-slot{background:#1c1c25;border:1.5px dashed #2a2a38;border-radius:10px;aspect-ratio:1;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;transition:border-color .18s;overflow:hidden;position:relative}
     .img-slot:hover{border-color:#ff5722}
     .img-slot img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
     .img-slot .remove-img{position:absolute;top:4px;right:4px;background:#ff4444;color:#fff;border:none;border-radius:50%;width:20px;height:20px;font-size:11px;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:5}
-    /* Post list */
     .post-row{background:#14141a;border:1px solid #2a2a38;border-radius:10px;transition:border-color .18s}
     .post-row:hover{border-color:rgba(255,87,34,.3)}
-    /* Rating bar builder */
     .rating-row{display:flex;align-items:center;gap:10px;margin-bottom:8px}
     .rating-row input[type=text]{flex:1;min-width:0}
     .rating-row input[type=range]{width:90px;accent-color:#ff5722}
@@ -70,7 +66,6 @@
 </head>
 <body class="min-h-screen pb-20 overflow-x-hidden">
 
-<!-- HEADER -->
 <header class="sticky top-0 z-50 border-b border-border px-5" style="background:rgba(12,12,16,.96);backdrop-filter:blur(16px)">
   <div class="max-w-5xl mx-auto flex items-center justify-between h-14 gap-3">
     <div class="font-title text-lg font-black grad-text flex items-center gap-2">
@@ -92,20 +87,17 @@
 
 <div class="max-w-5xl mx-auto px-5 py-8 space-y-8">
 
-  <!-- TABS -->
   <div class="flex gap-2 border-b border-border pb-3">
     <button onclick="setTab('novo')" id="tab-novo" class="btn btn-primary btn-sm">✏️ Novo Post</button>
     <button onclick="setTab('lista')" id="tab-lista" class="btn btn-ghost btn-sm">📋 Posts Publicados</button>
   </div>
 
-  <!-- ===== TAB: NOVO POST ===== -->
+  <!-- TAB: NOVO POST -->
   <div id="pane-novo">
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
 
-      <!-- COL ESQUERDA: Editor principal -->
       <div class="lg:col-span-2 space-y-5">
 
-        <!-- BÁSICO -->
         <div class="card p-5 space-y-4">
           <div class="section-title">📝 Informações Básicas</div>
           <div class="field"><label>Título do Post (H1 / SEO) *</label>
@@ -125,10 +117,8 @@
           </div>
         </div>
 
-        <!-- CONTEÚDO -->
         <div class="card p-5 space-y-3">
           <div class="section-title">📄 Conteúdo do Post</div>
-          <!-- TOOLBAR -->
           <div class="flex flex-wrap gap-1.5">
             <button class="toolbar-btn" onclick="inserir('<h2>Título da Seção</h2>\n')">H2</button>
             <button class="toolbar-btn" onclick="inserir('<h3>Subtítulo</h3>\n')">H3</button>
@@ -140,12 +130,11 @@
             <button class="toolbar-btn" onclick="inserir('<hr/>\n')">─ HR</button>
           </div>
           <div class="field">
-            <textarea id="f-conteudo" rows="18" placeholder="Cole ou escreva o HTML do post aqui. Use os botões acima para inserir elementos formatados.\n\nDica SEO: estruture com H2 e H3, use negrito para palavras-chave, adicione listas para escaneabilidade."></textarea>
+            <textarea id="f-conteudo" rows="18" placeholder="Cole ou escreva o HTML do post aqui. Use os botões acima para inserir elementos formatados."></textarea>
           </div>
           <p class="text-muted text-xs">Suporta HTML. Use a toolbar para manter estrutura otimizada para SEO.</p>
         </div>
 
-        <!-- PROS / CONS -->
         <div class="card p-5 space-y-4">
           <div class="section-title">✅ Prós e Contras</div>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -162,7 +151,6 @@
           </div>
         </div>
 
-        <!-- AVALIAÇÕES (ratings) -->
         <div class="card p-5 space-y-3">
           <div class="section-title">⭐ Barras de Avaliação</div>
           <div id="rating-rows"></div>
@@ -177,10 +165,8 @@
 
       </div>
 
-      <!-- COL DIREITA: Imagens + Preço + Config -->
       <div class="space-y-5">
 
-        <!-- IMAGEM PRINCIPAL -->
         <div class="card p-5 space-y-3">
           <div class="section-title">🖼️ Imagem Principal</div>
           <div class="img-slot h-44 w-full" id="slot-principal" onclick="document.getElementById('inp-principal').click()">
@@ -194,7 +180,6 @@
           </div>
         </div>
 
-        <!-- GALERIA DE PRODUTO -->
         <div class="card p-5 space-y-3">
           <div class="section-title">🖼️ Galeria do Produto</div>
           <div id="galeria-grid" class="grid grid-cols-3 gap-2"></div>
@@ -203,7 +188,6 @@
           <p class="text-xs text-muted">Fotos do produto para o carrossel principal.</p>
         </div>
 
-        <!-- AVALIAÇÕES (prints de comentários) -->
         <div class="card p-5 space-y-3">
           <div class="section-title">💬 Prints de Avaliações</div>
           <div id="avaliacoes-grid" class="grid grid-cols-3 gap-2"></div>
@@ -212,7 +196,6 @@
           <p class="text-xs text-muted">Prints de avaliações reais de compradores.</p>
         </div>
 
-        <!-- PREÇO + LINK -->
         <div class="card p-5 space-y-3">
           <div class="section-title">💰 Preço e Link</div>
           <div class="field"><label>Preço Atual *</label>
@@ -232,7 +215,6 @@
           </div>
         </div>
 
-        <!-- SALVAR / PREVIEW -->
         <div class="flex flex-col gap-2">
           <button onclick="salvarEPublicar()" id="btn-salvar"
             class="btn btn-push w-full justify-center text-base py-3">
@@ -247,7 +229,7 @@
     </div>
   </div>
 
-  <!-- ===== TAB: LISTA ===== -->
+  <!-- TAB: LISTA -->
   <div id="pane-lista" class="hidden space-y-4">
     <div class="flex items-center justify-between mb-2">
       <h2 class="font-title font-bold text-lg">Posts Publicados</h2>
@@ -313,16 +295,15 @@
    ESTADO
 ────────────────────────────────────────── */
 const GH_KEY = 'blog_gh_v1';
-const TEMPLATE_KEY = 'blog_tpl_v1';
 
-// In-memory images: { name, base64, dataUrl }
 let imgPrincipal = null;
-let galeriaImgs  = [];  // produto
-let avaliacaoImgs= [];  // prints reviews
+let galeriaImgs  = [];
+let avaliacaoImgs= [];
 let ratingRows   = [];
-let editandoId   = null; // id do post em edição
+let editandoId   = null;
 let postsJson    = { posts: [] };
-let shaCache     = {};   // path → sha (para updates)
+// FIX: sha cache por path, limpo a cada sessão de publicação
+let shaCache     = {};
 
 /* ──────────────────────────────────────────
    INIT
@@ -389,7 +370,7 @@ function selecionarPrincipal(ev) {
   });
 }
 function removerPrincipal(e) {
-  e.stopPropagation();
+  if (e && e.stopPropagation) e.stopPropagation();
   imgPrincipal = null;
   const slot = document.getElementById('slot-principal');
   slot.innerHTML = `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#7070a0" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span class="text-muted text-xs mt-2">Clique para selecionar</span>`;
@@ -442,14 +423,14 @@ function lerImagem(file, cb) {
    RATING ROWS
 ────────────────────────────────────────── */
 function addRatingRow(nome='', val=8) {
-  const id = Date.now();
+  const id = Date.now() + Math.random();
   ratingRows.push({ id, nome, val });
   renderRatingRows();
 }
 function renderRatingRows() {
   document.getElementById('rating-rows').innerHTML = ratingRows.map(r => `
     <div class="rating-row">
-      <input type="text" value="${r.nome}" placeholder="Ex: Custo-benefício" class="field flex-1"
+      <input type="text" value="${esc(r.nome)}" placeholder="Ex: Custo-benefício" class="field flex-1"
         style="background:#1c1c25;border:1px solid #2a2a38;border-radius:8px;padding:8px 12px;color:#f0eeff;font-size:13px;font-family:'Geist',sans-serif;outline:none"
         oninput="ratingRows.find(x=>x.id===${r.id}).nome=this.value"/>
       <input type="range" min="0" max="10" step="0.5" value="${r.val}"
@@ -464,13 +445,14 @@ function renderRatingRows() {
    GERADOR HTML DO POST
 ────────────────────────────────────────── */
 async function gerarHTMLPost(post) {
-  // load template
   let tpl;
   try {
     const r = await fetch('posts/template.html');
+    if (!r.ok) throw new Error('template not found');
     tpl = await r.text();
   } catch {
-    tpl = TEMPLATE_FALLBACK;
+    toast('⚠️ posts/template.html não encontrado', 'err');
+    throw new Error('Template HTML não encontrado em posts/template.html');
   }
 
   const dataObj  = new Date(post.data);
@@ -479,24 +461,21 @@ async function gerarHTMLPost(post) {
   const imgPath  = post.imagem_principal ? `../img/${post.imagem_principal}` : '';
   const tituloCurto = post.titulo.length > 50 ? post.titulo.slice(0,47)+'...' : post.titulo;
 
-  // slides galeria
   const slidesGaleria = (post.galeria||[]).map(img =>
-    `<div class="swiper-slide"><img src="../img/${img}" alt="${post.titulo}" loading="lazy"/></div>`
+    `<div class="swiper-slide"><img src="../img/${img}" alt="${esc(post.titulo)}" loading="lazy"/></div>`
   ).join('\n');
 
-  // slides avaliações
   const slidesAvaliacoes = (post.galeria_avaliacoes||[]).map(img =>
     `<div class="swiper-slide"><img src="../img/${img}" alt="Avaliação" loading="lazy" style="border-radius:12px"/></div>`
   ).join('\n');
 
-  // rating bars
   const nota = post.nota || 9;
   const emojis = ['😐','😕','😐','🤔','😊','😊','👍','✅','⭐','🔥','🏆'];
   const emojiNota = emojis[Math.min(10,Math.round(nota))];
   const ratingBarsHtml = (post.rating_criterios||[]).map(c => `
     <div>
       <div style="display:flex;justify-content:space-between;margin-bottom:4px">
-        <span style="font-size:12px;font-weight:600">${c.nome}</span>
+        <span style="font-size:12px;font-weight:600">${esc(c.nome)}</span>
         <span style="font-size:12px;color:#ff8a50;font-family:'Geist Mono',monospace">${c.val}/10</span>
       </div>
       <div style="background:#2a2a38;border-radius:99px;height:6px">
@@ -504,37 +483,34 @@ async function gerarHTMLPost(post) {
       </div>
     </div>`).join('');
 
-  // pros / cons
-  const prosHtml = (post.pros||[]).map(p => `<li>✅ ${p}</li>`).join('');
-  const consHtml = (post.cons||[]).map(c => `<li>⚠️ ${c}</li>`).join('');
+  const prosHtml = (post.pros||[]).map(p => `<li>${esc(p)}</li>`).join('');
+  const consHtml = (post.cons||[]).map(c => `<li>${esc(c)}</li>`).join('');
 
-  // badge
   const badgeHtml = post.badge
-    ? `<span style="background:rgba(255,87,34,.12);border:1px solid rgba(255,87,34,.25);color:#ff8a50;font-size:10px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;padding:3px 12px;border-radius:50px">${post.badge}</span>`
+    ? `<span style="background:rgba(255,87,34,.12);border:1px solid rgba(255,87,34,.25);color:#ff8a50;font-size:10px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;padding:3px 12px;border-radius:50px">${esc(post.badge)}</span>`
     : '';
 
   let html = tpl
-    .replace(/{{TITULO}}/g,          esc(post.titulo))
+    .replace(/{{TITULO}}/g,           esc(post.titulo))
     .replace(/{{TITULO_CURTO}}/g,     esc(tituloCurto))
-    .replace(/{{RESUMO}}/g,          esc(post.resumo||''))
-    .replace(/{{SLUG}}/g,            post.slug)
-    .replace(/{{DATA_ISO}}/g,        dataIso)
-    .replace(/{{DATA_FORMATADA}}/g,  dataFmt)
+    .replace(/{{RESUMO}}/g,           esc(post.resumo||''))
+    .replace(/{{SLUG}}/g,             post.slug)
+    .replace(/{{DATA_ISO}}/g,         dataIso)
+    .replace(/{{DATA_FORMATADA}}/g,   dataFmt)
     .replace(/{{IMAGEM_PRINCIPAL}}/g, imgPath)
-    .replace(/{{CONTEUDO}}/g,        post.conteudo||'')
-    .replace(/{{NOTA}}/g,            nota)
-    .replace(/{{EMOJI_NOTA}}/g,      emojiNota)
-    .replace(/{{RATING_BARS}}/g,     ratingBarsHtml)
-    .replace(/{{PROS_HTML}}/g,       prosHtml)
-    .replace(/{{CONS_HTML}}/g,       consHtml)
-    .replace(/{{BADGE_HTML}}/g,      badgeHtml)
-    .replace(/{{SLIDES_GALERIA}}/g,  slidesGaleria)
-    .replace(/{{SLIDES_AVALIACOES}}/g, slidesAvaliacoes)
-    .replace(/{{PRECO}}/g,           post.preco||'')
-    .replace(/{{PRECO_DE}}/g,        post.preco_de||'')
-    .replace(/{{LINK_COMPRA}}/g,     post.link_compra||'#');
+    .replace(/{{CONTEUDO}}/g,         post.conteudo||'')
+    .replace(/{{NOTA}}/g,             nota)
+    .replace(/{{EMOJI_NOTA}}/g,       emojiNota)
+    .replace(/{{RATING_BARS}}/g,      ratingBarsHtml)
+    .replace(/{{PROS_HTML}}/g,        prosHtml)
+    .replace(/{{CONS_HTML}}/g,        consHtml)
+    .replace(/{{BADGE_HTML}}/g,       badgeHtml)
+    .replace(/{{SLIDES_GALERIA}}/g,   slidesGaleria)
+    .replace(/{{SLIDES_AVALIACOES}}/g,slidesAvaliacoes)
+    .replace(/{{PRECO}}/g,            esc(post.preco||''))
+    .replace(/{{PRECO_DE}}/g,         esc(post.preco_de||''))
+    .replace(/{{LINK_COMPRA}}/g,      post.link_compra||'#');
 
-  // handle conditionals {{#if ...}} / {{/if}}
   html = html.replace(/{{#if GALERIA}}([\s\S]*?){{\/if}}/g,
     (post.galeria||[]).length ? '$1' : '');
   html = html.replace(/{{#if GALERIA_AVALIACOES}}([\s\S]*?){{\/if}}/g,
@@ -578,8 +554,8 @@ function lerForm() {
    VALIDAR
 ────────────────────────────────────────── */
 function validar(post) {
-  if (!post.titulo)  { toast('⚠️ Título obrigatório','err'); return false; }
-  if (!post.slug)    { toast('⚠️ Slug obrigatório','err'); return false; }
+  if (!post.titulo)      { toast('⚠️ Título obrigatório','err'); return false; }
+  if (!post.slug)        { toast('⚠️ Slug obrigatório','err'); return false; }
   if (!post.link_compra) { toast('⚠️ Link de compra obrigatório','err'); return false; }
   return true;
 }
@@ -600,28 +576,38 @@ async function salvarEPublicar() {
   btn.disabled = true;
   btn.innerHTML = '<span class="spin">↻</span> Publicando...';
 
+  // Limpa SHA cache a cada publicação para evitar conflitos
+  shaCache = {};
+
   try {
     // 1. Atualizar posts.json
     await carregarPostsJson(cfg);
     upsertPost(post);
     await pushArquivo(cfg, `${cfg.base||'blog'}/posts.json`, JSON.stringify(postsJson, null, 2), `feat: post "${post.titulo}"`);
 
-    // 2. Upload imagens
+    // 2. Upload imagens (já são base64 puro vindos do FileReader)
     const todasImgs = [
       ...(imgPrincipal ? [imgPrincipal] : []),
       ...galeriaImgs,
       ...avaliacaoImgs
     ];
     for (const img of todasImgs) {
-      await pushArquivo(cfg, `${cfg.base||'blog'}/img/${img.name}`, img.base64, `img: ${img.name}`, true, img.type);
+      await pushArquivoBase64(cfg, `${cfg.base||'blog'}/img/${img.name}`, img.base64, `img: ${img.name}`);
     }
 
-    // 3. Gerar e push HTML do post
+    // ═══════════════════════════════════════════════════════════════
+    // BUG FIX CRÍTICO:
+    // ANTES (ERRADO): pre-encodava manualmente e passava rawBase64=true
+    //   const base64Html = btoa(unescape(encodeURIComponent(htmlPost)));
+    //   await pushArquivo(cfg, path, base64Html, msg, true);
+    //   → pushArquivo via rawBase64=true não re-encodava → GitHub recebia
+    //     base64 do base64 → arquivo no repo continha string base64 literal
+    //     → browser servia base64 como conteúdo → usuário via base64 na tela
+    //
+    // AGORA (CORRETO): passa HTML puro → pushArquivo faz encode único
+    // ═══════════════════════════════════════════════════════════════
     const htmlPost = await gerarHTMLPost(post);
-    const base64Html = btoa(unescape(encodeURIComponent(htmlPost)));
-    await pushArquivo(cfg, `${cfg.base||'blog'}/posts/${post.slug}.html`, base64Html, `post: ${post.slug}`, true);
-
-
+    await pushArquivo(cfg, `${cfg.base||'blog'}/posts/${post.slug}.html`, htmlPost, `post: ${post.slug}`);
 
     toast('🚀 Publicado! GitHub Pages atualiza em ~30s','ok');
     setTimeout(() => limparForm(), 1500);
@@ -645,7 +631,8 @@ function upsertPost(post) {
 }
 
 /* ──────────────────────────────────────────
-   CARREGAR posts.json via proxy
+   CARREGAR posts.json
+   FIX: usa cfg.base para consistência com o path de push
 ────────────────────────────────────────── */
 async function carregarPostsJson(cfg) {
   try {
@@ -656,46 +643,71 @@ async function carregarPostsJson(cfg) {
 }
 
 /* ──────────────────────────────────────────
-   PUSH ARQUIVO VIA PROXY
-   conteudo = string (JSON/HTML) ou base64 (img)
-   rawBase64 = true quando já é base64 puro
+   PUSH ARQUIVO TEXTO (JSON, HTML)
+   Conteúdo = string → encode feito aqui (único)
 ────────────────────────────────────────── */
-async function pushArquivo(cfg, path, conteudo, mensagem, rawBase64=false, mimeType='') {
-  // get current SHA se existir
-  let sha = shaCache[path];
-  if (!sha) {
-    try {
-      const r = await fetch(cfg.proxy, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ action:'get_sha', owner:cfg.owner, repo:cfg.repo, branch:cfg.branch||'main', path })
-      });
-      const d = await r.json();
-      if (d.sha) { sha = d.sha; shaCache[path] = sha; }
-    } catch {}
-  }
+async function pushArquivo(cfg, path, conteudo, mensagem) {
+  const sha = await getSha(cfg, path);
+  // Encode único: string → UTF-8 bytes → base64
+  const base64 = btoa(unescape(encodeURIComponent(conteudo)));
+  return _putGitHub(cfg, path, base64, mensagem, sha);
+}
 
-  const base64 = rawBase64 ? conteudo : btoa(unescape(encodeURIComponent(conteudo)));
+/* ──────────────────────────────────────────
+   PUSH ARQUIVO BINÁRIO (imagens)
+   base64 = string base64 pura vinda do FileReader
+────────────────────────────────────────── */
+async function pushArquivoBase64(cfg, path, base64Puro, mensagem) {
+  const sha = await getSha(cfg, path);
+  return _putGitHub(cfg, path, base64Puro, mensagem, sha);
+}
+
+/* ──────────────────────────────────────────
+   GET SHA via proxy
+────────────────────────────────────────── */
+async function getSha(cfg, path) {
+  if (shaCache[path] !== undefined) return shaCache[path];
+  try {
+    const r = await fetch(cfg.proxy, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ action:'get_sha', owner:cfg.owner, repo:cfg.repo, branch:cfg.branch||'main', path })
+    });
+    const d = await r.json();
+    shaCache[path] = d.sha || null;
+    return shaCache[path];
+  } catch {
+    shaCache[path] = null;
+    return null;
+  }
+}
+
+/* ──────────────────────────────────────────
+   PUT GITHUB via proxy
+────────────────────────────────────────── */
+async function _putGitHub(cfg, path, base64Content, message, sha) {
+  const body = {
+    owner: cfg.owner, repo: cfg.repo,
+    branch: cfg.branch || 'main',
+    path, content: base64Content, message,
+    ...(sha ? { sha } : {})
+  };
 
   const resp = await fetch(cfg.proxy, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      owner: cfg.owner, repo: cfg.repo,
-      branch: cfg.branch || 'main',
-      path, content: base64, message: mensagem,
-      ...(sha ? { sha } : {})
-    })
+    body: JSON.stringify(body)
   });
 
   const data = await resp.json().catch(() => ({}));
   if (!resp.ok) throw new Error(data.error || `Erro ${resp.status} em ${path}`);
-  // atualiza sha cache
+  // Atualiza SHA para próximo update do mesmo arquivo nesta sessão
   if (data.sha) shaCache[path] = data.sha;
+  return data;
 }
 
 /* ──────────────────────────────────────────
-   PUBLICAR (botão header) — publica só posts.json
+   PUBLICAR (botão header) — só posts.json
 ────────────────────────────────────────── */
 async function publicar() {
   const cfg = carregarCfgGH();
@@ -766,9 +778,8 @@ function editarPost(id) {
   renderGaleriaGrid();
   renderAvaliacoesGrid();
   imgPrincipal = null;
-  removerPrincipal({ stopPropagation:()=>{} });
+  removerPrincipal(null);
 
-  // set thumbnail preview from existing path
   if (p.imagem_principal) {
     const slot = document.getElementById('slot-principal');
     slot.innerHTML = `<img src="img/${p.imagem_principal}" alt="" onerror="this.parentElement.innerHTML='📷'"/>`;
@@ -776,7 +787,8 @@ function editarPost(id) {
 
   document.getElementById('f-slug').dataset.manual = '1';
   setTab('novo');
-  document.querySelector('main, .max-w-5xl').scrollIntoView({ behavior:'smooth' });
+  // FIX: scroll correto — window.scrollTo em vez de querySelector que falhava
+  window.scrollTo({ top: 0, behavior: 'smooth' });
   toast(`✏️ Editando: ${p.titulo}`, 'ok');
 }
 
@@ -800,9 +812,13 @@ async function excluirPost(id) {
 async function previewPost() {
   const post = lerForm();
   if (!post.titulo) { toast('⚠️ Preencha o título','err'); return; }
-  const html = await gerarHTMLPost(post);
-  document.getElementById('preview-out').textContent = html;
-  document.getElementById('modal-preview').style.display = 'flex';
+  try {
+    const html = await gerarHTMLPost(post);
+    document.getElementById('preview-out').textContent = html;
+    document.getElementById('modal-preview').style.display = 'flex';
+  } catch(e) {
+    toast('❌ ' + e.message, 'err');
+  }
 }
 function fecharPreview() { document.getElementById('modal-preview').style.display = 'none'; }
 function copiarHTMLPreview() {
@@ -822,7 +838,7 @@ function limparForm() {
   ratingRows = [];
   addRatingRow('Custo-benefício',9); addRatingRow('Qualidade do Produto',8); addRatingRow('Entrega / Frete',9);
   renderGaleriaGrid(); renderAvaliacoesGrid();
-  removerPrincipal({ stopPropagation:()=>{} });
+  removerPrincipal(null);
   delete document.getElementById('f-slug').dataset.manual;
 }
 
@@ -834,13 +850,12 @@ function carregarCfgGH() {
 }
 function atualizarStatusGH() {
   const cfg = carregarCfgGH();
-  const status = document.getElementById('gh-status');
   const txt    = document.getElementById('gh-status-txt');
   const dot    = document.getElementById('gh-dot');
   if (cfg.proxy && cfg.owner && cfg.repo) {
-    status.classList.remove('text-muted'); status.classList.add('text-green');
     dot.style.background = '#00e676';
     txt.textContent = `${cfg.owner}/${cfg.repo}`;
+    txt.style.color = '#00e676';
   } else {
     txt.textContent = 'Configurar GitHub';
     dot.style.background = '#7070a0';
