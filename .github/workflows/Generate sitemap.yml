@@ -1,0 +1,24 @@
+name: Gerar Sitemap
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "blog/posts.json"   # dispara quando admin publica/remove post
+
+jobs:
+  sitemap:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Gerar sitemap.xml
+        run: node scripts/generate-sitemap.js
+
+      - name: Commit sitemap.xml
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add sitemap.xml
+          git diff --staged --quiet || git commit -m "chore: atualiza sitemap.xml [skip ci]"
+          git push
