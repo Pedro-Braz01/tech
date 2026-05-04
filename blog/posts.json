@@ -1,3 +1,37 @@
 {
-  "posts": []
+  "posts": [
+    {
+      "id": 1777934975767,
+      "titulo": "teste1",
+      "slug": "teste1",
+      "resumo": "teste360",
+      "badge": "",
+      "conteudo": "<h2>Título da Seção</h2>\n<h3>Melhor</h3><p><strong>Texto em negrito</strong></p>\n<ul>\n  <li>Item 1</li>\n  <li>Item 2</li>\n</ul>\n<ol>\n  <li>Passo 1</li>\n  <li>Passo 2</li>\n</ol>\n<blockquote>Citação ou destaque</blockquote>\n<p>📌 <strong>Dica:</strong> Texto da dica aqui.</p>\n<hr/>\n\n",
+      "preco": "",
+      "preco_de": "",
+      "link_compra": "https://meli.la/1soAQAh",
+      "nota": 9,
+      "rascunho": false,
+      "data": "2026-05-04T22:49:35.767Z",
+      "imagem_principal": "",
+      "galeria": [],
+      "galeria_avaliacoes": [],
+      "rating_criterios": [
+        {
+          "nome": "Custo-benefício",
+          "val": 9
+        },
+        {
+          "nome": "Qualidade do Produto",
+          "val": 8
+        },
+        {
+          "nome": "Entrega / Frete",
+          "val": 9
+        }
+      ],
+      "pros": [],
+      "cons": []
+    }
+  ]
 }
