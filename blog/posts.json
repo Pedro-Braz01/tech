@@ -1,3 +1,37 @@
 {
-  "posts": []
+  "posts": [
+    {
+      "id": 1777937925156,
+      "titulo": "teste",
+      "slug": "teste",
+      "resumo": "",
+      "badge": "",
+      "conteudo": "",
+      "preco": "",
+      "preco_de": "",
+      "link_compra": "https://meli.la/1soAQAh",
+      "nota": 9,
+      "rascunho": false,
+      "data": "2026-05-04T23:38:45.156Z",
+      "imagem_principal": "",
+      "galeria": [],
+      "galeria_avaliacoes": [],
+      "rating_criterios": [
+        {
+          "nome": "Custo-benefício",
+          "val": 9
+        },
+        {
+          "nome": "Qualidade do Produto",
+          "val": 8
+        },
+        {
+          "nome": "Entrega / Frete",
+          "val": 9
+        }
+      ],
+      "pros": [],
+      "cons": []
+    }
+  ]
 }
