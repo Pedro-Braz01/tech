@@ -4,13 +4,19 @@ on:
   push:
     branches: [main]
     paths:
-      - "blog/posts.json"   # dispara quando admin publica/remove post
+      - "blog/posts.json"
+
+# FIX: permissão explícita para commitar
+permissions:
+  contents: write
 
 jobs:
   sitemap:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Gerar sitemap.xml
         run: node scripts/generate-sitemap.js

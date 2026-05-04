@@ -22,7 +22,9 @@ const PAGINAS_FIXAS = [
 let posts = [];
 try {
   const raw = JSON.parse(fs.readFileSync(POSTS_JSON, 'utf8'));
+  // Apenas posts publicados (não rascunho)
   posts = (raw.posts || []).filter(p => !p.rascunho);
+  console.log(`[sitemap] ${posts.length} post(s) publicado(s) encontrado(s)`);
 } catch (e) {
   console.warn('[sitemap] Aviso: não foi possível ler posts.json:', e.message);
 }
